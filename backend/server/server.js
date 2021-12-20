@@ -1,5 +1,6 @@
 const express = require('express');
 const cors    = require('cors');
+const errorHandler = require('../middlewares/error-handler');
 require('dotenv').config();
 
 class Server{
@@ -14,6 +15,7 @@ class Server{
         this.middlewares();
         
         this.routes();
+        this.app.use( errorHandler );
 
         this.execute();
     }
