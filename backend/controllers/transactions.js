@@ -16,26 +16,35 @@ const newTransaction = async(req, res) => {
 
 const getTransactions = async(req, res) => {
     let incomes = 0, expenses = 0;
-    const response     = await pool.query("SELECT * FROM transactions ORDER BY date DESC");
-    const transactions = response.rows;
+    
+    try {
+        const response     = await pool.query("SELECT * FROM transactions ORDER BY date DESC");
+        const transactions = response.rows;
 
-    transactions.forEach( transaction => {
-        incomes += transaction.type === 'income' ? transaction.amount: 0;
-        expenses += transaction.type === 'expense' ? transaction.amount: 0;
-    } )
+        transactions.forEach( transaction => {
+            incomes += transaction.type === 'income' ? transaction.amount: 0;
+            expenses += transaction.type === 'expense' ? transaction.amount: 0;
+        } )
 
-    const total = +(incomes - expenses).toFixed(2);
-    if ( transactions.length > 10 ) transactions.length = 10;
+        const total = +(incomes - expenses).toFixed(2);
+        if ( transactions.length > 10 ) transactions.length = 10;
 
-    res.status(200).json({
-        total,
-        incomes,
-        expenses,
-        transactions
-    })
+        res.status(200).json({
+            total,
+            incomes,
+            expenses,
+            transactions
+        })
+        
+    } catch (error) {
+        console.log(error)
+    }
+    
 }
+
+
 
 module.exports = {
     newTransaction,
-    getTransactions
+    getTransactions,    
 }
