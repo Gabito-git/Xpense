@@ -1,7 +1,9 @@
+import HomeScreen from "./screens/HomeScreen"
+
 const App = () => {
   return (
     <div>
-      <h1>HELLO WORLD</h1>
+      <HomeScreen />
     </div>
   )
 }
