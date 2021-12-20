@@ -8,6 +8,6 @@ CREATE TABLE IF NOT EXISTS transactions (
     amount real NOT NULL,
     date DATE NOT NULL,
 	category VARCHAR NOT NULL,
-	typename VALID_TYPES,
+	type VALID_TYPES,
     PRIMARY KEY (transaction_id)
 );
