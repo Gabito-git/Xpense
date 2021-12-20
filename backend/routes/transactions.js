@@ -4,7 +4,8 @@ const { check }  = require('express-validator');
 const { 
     newTransaction, 
     getTransactions, 
-    updateTransaction} = require('../controllers/transactions');
+    updateTransaction,
+    deleteTransaction} = require('../controllers/transactions');
 const { allowedTypes }   = require('../helpers/db-validators');
 const validateFields     = require('../middlewares/validateFields');
 
@@ -29,5 +30,10 @@ router.put('/:id',[
     check('id', 'Invalid id format').isUUID(4),
     validateFields
 ], updateTransaction);
+
+router.delete('/:id',[
+    check('id', 'Invalid id format').isUUID(4),
+    validateFields
+], deleteTransaction)
 
 module.exports = router;
