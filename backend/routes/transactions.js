@@ -1,7 +1,9 @@
 const { Router } = require('express');
 const { check }  = require('express-validator');
  
-const { newTransaction } = require('../controllers/transactions');
+const { 
+    newTransaction, 
+    getTransactions } = require('../controllers/transactions');
 const { allowedTypes }   = require('../helpers/db-validators');
 const validateFields     = require('../middlewares/validateFields');
 
@@ -15,5 +17,7 @@ router.post('/',[
     check('type').custom( c => allowedTypes( c, ['income', 'expense'] ) ),
     validateFields
  ], newTransaction);
+
+ router.get('/', getTransactions)
 
 module.exports = router;
