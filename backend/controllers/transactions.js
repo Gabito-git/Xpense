@@ -120,9 +120,32 @@ const deleteTransaction = async(req, res) => {
     res.status(200).json({ok: true})
 }
 
+const searchByCategory = async(req, res) => {
+    const { category } = req.params;
+    
+    try {
+        const transactions = await pool.query(
+            "SELECT * FROM transactions WHERE category=$1", [ category ]
+        )
+
+        res.status(200).json({ transactions: transactions.rows })
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(
+            {   
+                errors: [{
+                    message: 'Please contact the admin'
+                }] 
+            }
+        )
+    }
+}
+
 module.exports = {
     newTransaction,
     getTransactions, 
     updateTransaction,
-    deleteTransaction
+    deleteTransaction,
+    searchByCategory
 }
