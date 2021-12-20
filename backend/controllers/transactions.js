@@ -64,8 +64,24 @@ const updateTransaction = async(req, res) => {
     }
 }
 
+const deleteTransaction = async(req, res) => {
+    const { id } = req.params;
+
+    try {
+        await pool.query(
+            'DELETE FROM transactions WHERE transaction_id=$1',
+            [id]
+        )
+
+        res.status(200).json({ok: true})
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 module.exports = {
     newTransaction,
     getTransactions, 
-    updateTransaction   
+    updateTransaction,
+    deleteTransaction
 }
