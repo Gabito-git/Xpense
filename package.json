@@ -1,0 +1,11 @@
+{
+  "name": "xpense",
+  "version": "1.0.0",
+  "description": "Full stack app to control expenses",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Luis Arevalo",
+  "license": "ISC"
+}
