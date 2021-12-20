@@ -1,13 +1,13 @@
-const allowedTypes = (type = "", types=[]) => {
-    const isIncluded = types.includes( type );
+const allowedData = (value = "", values=[]) => {
+    const isIncluded = values.includes( value );
 
     if( !isIncluded ){
-        throw new Error(`The transaction type ${type} is not allowed, ${types}`);
+        throw new Error(`The transaction type/category ${value} is not allowed, ${values}`);
     }
 
     return true;
 }
 
 module.exports = {
-    allowedTypes
+    allowedData
 }
