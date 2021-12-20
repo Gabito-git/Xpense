@@ -1,4 +1,5 @@
 const { pool }   = require('../db/config');
+const BadRequestError = require('../errors/bad-request-err');
 
 const newTransaction = async(req, res) => {
     const { concept, amount, date, category, type} = req.body;
@@ -84,15 +85,15 @@ const updateTransaction = async(req, res) => {
 }
 
 const deleteTransaction = async(req, res) => {
+    let response;
     const { id } = req.params;
 
     try {
-        await pool.query(
+        response = await pool.query(
             'DELETE FROM transactions WHERE transaction_id=$1',
             [id]
         )
 
-        res.status(200).json({ok: true})
     } catch (error) {
         console.log(error);
         res.status(500).json(
@@ -100,8 +101,14 @@ const deleteTransaction = async(req, res) => {
                 ok: false,
                 message: 'Please contact with the admin'
             }
-        )
-    }
+            )
+        }
+
+    if( response.rowCount === 0 ){
+        throw new BadRequestError('Transaction not found');
+    } 
+
+    res.status(200).json({ok: true})
 }
 
 module.exports = {
