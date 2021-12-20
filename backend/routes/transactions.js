@@ -5,22 +5,32 @@ const {
     newTransaction, 
     getTransactions, 
     updateTransaction,
-    deleteTransaction} = require('../controllers/transactions');
-const { allowedTypes }   = require('../helpers/db-validators');
+    deleteTransaction,
+    searchByCategory} = require('../controllers/transactions');
+const { allowedData }   = require('../helpers/db-validators');
 const validateFields     = require('../middlewares/validateFields');
 
 const router = Router();
+
+const categories = [
+    'Salary', 'Interests', 'Food', 'Transportation', 'Gift', 'Family', 'Other'
+]
 
 router.post('/',[
     check('concept', 'Concept field is mandatory').not().isEmpty(),
     check('amount', 'Please provide a valid amount value').isFloat(),
     check('date', 'Please provide a valid date').isISO8601(),
     check('category', 'Category field is mandatory').not().isEmpty(),
-    check('type').custom( c => allowedTypes( c, ['income', 'expense'] ) ),
+    check('type').custom( c => allowedData( c, ['income', 'expense'] ) ),
     validateFields
  ], newTransaction);
 
 router.get('/', getTransactions);
+
+router.get('/:category/category', [
+    check('category').custom( c => allowedData( c, categories ) ),
+    validateFields
+], searchByCategory)
 
 router.put('/:id',[
     check('concept', 'Concept field is mandatory').not().isEmpty(),
@@ -35,5 +45,6 @@ router.delete('/:id',[
     check('id', 'Invalid id format').isUUID(4),
     validateFields
 ], deleteTransaction)
+
 
 module.exports = router;
