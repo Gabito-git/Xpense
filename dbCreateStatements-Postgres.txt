@@ -1,0 +1,13 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TYPE valid_types AS ENUM ('income', 'expense');
+
+CREATE TABLE IF NOT EXISTS transactions (
+    transaction_id uuid DEFAULT uuid_generate_v4 (),
+    concept VARCHAR NOT NULL,
+    amount real NOT NULL,
+    date DATE NOT NULL,
+	category VARCHAR NOT NULL,
+	typename VALID_TYPES,
+    PRIMARY KEY (transaction_id)
+);
