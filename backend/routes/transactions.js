@@ -3,7 +3,8 @@ const { check }  = require('express-validator');
  
 const { 
     newTransaction, 
-    getTransactions } = require('../controllers/transactions');
+    getTransactions, 
+    updateTransaction} = require('../controllers/transactions');
 const { allowedTypes }   = require('../helpers/db-validators');
 const validateFields     = require('../middlewares/validateFields');
 
@@ -18,6 +19,15 @@ router.post('/',[
     validateFields
  ], newTransaction);
 
- router.get('/', getTransactions)
+router.get('/', getTransactions);
+
+router.put('/:id',[
+    check('concept', 'Concept field is mandatory').not().isEmpty(),
+    check('amount', 'Please provide a valid amount value').isFloat(),
+    check('date', 'Please provide a valid date').isISO8601(),    
+    check('category', 'Category field is mandatory').not().isEmpty(),   
+    check('id', 'Invalid id format').isUUID(4),
+    validateFields
+], updateTransaction);
 
 module.exports = router;
