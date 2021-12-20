@@ -8,9 +8,15 @@ const newTransaction = async(req, res) => {
             "INSERT INTO transactions (concept, amount, date, category, type) " +
             "VALUES($1, $2, $3, $4, $5) RETURNING *", [concept, amount, date, category, type]
         )
-        res.status(201).json({ ...newTransaction.rows[0] });
+        res.status(201).json({ok: true, ...newTransaction.rows[0] });
     } catch (error) {
-        console.log(error)
+        console.log(error);
+        res.status(500).json(
+            {
+                ok: false,
+                message: 'Please contact with the admin'
+            }
+        )
     }
 }
 
@@ -30,6 +36,7 @@ const getTransactions = async(req, res) => {
         if ( transactions.length > 10 ) transactions.length = 10;
 
         res.status(200).json({
+            ok: true,
             total,
             incomes,
             expenses,
@@ -37,7 +44,13 @@ const getTransactions = async(req, res) => {
         })
         
     } catch (error) {
-        console.log(error)
+        console.log(error);
+        res.status(500).json(
+            {
+                ok: false,
+                message: 'Please contact with the admin'
+            }
+        )
     }
     
 }
@@ -57,10 +70,16 @@ const updateTransaction = async(req, res) => {
             [concept, amount, date, category, id]
         )
 
-        res.status(200).json({...updatedTransaction.rows[0]});
+        res.status(200).json({ok: true,...updatedTransaction.rows[0]});
         
     } catch (error) {
-        console.error(error)
+        console.error(error);
+        res.status(500).json(
+            {
+                ok: false,
+                message: 'Please contact with the admin'
+            }
+        )
     }
 }
 
@@ -76,6 +95,12 @@ const deleteTransaction = async(req, res) => {
         res.status(200).json({ok: true})
     } catch (error) {
         console.log(error);
+        res.status(500).json(
+            {
+                ok: false,
+                message: 'Please contact with the admin'
+            }
+        )
     }
 }
 
