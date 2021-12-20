@@ -42,9 +42,30 @@ const getTransactions = async(req, res) => {
     
 }
 
+const updateTransaction = async(req, res) => {
+    const { concept, amount, date, category} = req.body;
+    const { id } = req.params;
 
+    try {
+        const updatedTransaction = await pool.query(
+            "UPDATE transactions "  +
+            "SET concept = $1, "    +
+                "amount  = $2, "    +
+                "date    = $3, "    +
+                "category= $4 "     +
+            "WHERE transaction_id = $5  RETURNING *",
+            [concept, amount, date, category, id]
+        )
+
+        res.status(200).json({...updatedTransaction.rows[0]});
+        
+    } catch (error) {
+        console.error(error)
+    }
+}
 
 module.exports = {
     newTransaction,
-    getTransactions,    
+    getTransactions, 
+    updateTransaction   
 }
