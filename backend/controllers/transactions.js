@@ -60,9 +60,10 @@ const getTransactions = async(req, res) => {
 const updateTransaction = async(req, res) => {
     const { concept, amount, date, category} = req.body;
     const { id } = req.params;
+    let updatedTransaction
 
     try {
-        const updatedTransaction = await pool.query(
+         updatedTransaction = await pool.query(
             "UPDATE transactions "  +
             "SET concept = $1, "    +
                 "amount  = $2, "    +
@@ -70,9 +71,7 @@ const updateTransaction = async(req, res) => {
                 "category= $4 "     +
             "WHERE transaction_id = $5  RETURNING *",
             [concept, amount, date, category, id]
-        )
-
-        res.status(200).json({...updatedTransaction.rows[0]});
+        )        
         
     } catch (error) {
         console.error(error);
@@ -84,6 +83,13 @@ const updateTransaction = async(req, res) => {
             }
         )
     }
+
+    if( updatedTransaction.rowCount === 0 ){
+        throw new BadRequestError('Transaction not found');
+    }
+    
+    res.status(200).json({...updatedTransaction.rows[0]});
+
 }
 
 const deleteTransaction = async(req, res) => {
@@ -106,7 +112,7 @@ const deleteTransaction = async(req, res) => {
             }
         )
     }
-    
+
     if( response.rowCount === 0 ){
         throw new BadRequestError('Transaction not found');
     } 
