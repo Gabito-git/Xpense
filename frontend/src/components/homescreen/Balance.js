@@ -12,7 +12,7 @@ const Balance = () => {
                 </div>
             </div>
             <div className="balance__bottom">
-                <div className="balance__total">
+                <div className="balance__trans-info balance__trans-info--total">
                    <h2>USD 350</h2>
                    <p>Total Balance</p>
                 </div>
