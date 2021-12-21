@@ -39,8 +39,16 @@
     }
 
     &__main{
-        max-width: 37rem;
+        max-width: 33rem;
         margin: 0 auto;
+
+        @media all and (min-width: 480px) and (max-width: 639px){
+            max-width: 42rem;
+        }
+
+        @media all and (min-width: 640px) and (max-width: 767px){
+            max-width: 57rem;
+        }
     }
 
 }
