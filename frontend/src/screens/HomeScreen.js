@@ -10,6 +10,20 @@ const HomeScreen = () => {
                     className="homescreen__nav-button"
                 />            
             </nav>
+
+            <main className="homescreen__main">
+                <div className="homescreen__left">
+                    <div>
+
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+                <div className="homescreen__right">
+
+                </div>
+            </main>
             
         </div>
     )
