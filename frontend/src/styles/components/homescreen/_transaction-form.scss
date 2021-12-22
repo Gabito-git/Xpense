@@ -4,6 +4,10 @@
     margin: 2rem 0;
     padding: 3rem 2.5rem;
 
+    @media all and (min-width: 1025px){
+        margin: 2rem 0 0 0;
+    }
+
     &__title{
         font-size: 2.2rem;
         font-weight: 400;
@@ -51,7 +55,7 @@
         font-family: inherit;
         margin-top: 2rem;
         padding: 1rem 1.5rem;
-        transition: all .3s;
+        transition: all;
 
         &:hover{
             background-color: $color-secondary;
