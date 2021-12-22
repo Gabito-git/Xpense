@@ -1,4 +1,5 @@
 import { BsThreeDots } from "react-icons/bs";
+import ModifyMenu from "./ModifyMenu";
 
 const Transaction = ({className}) => {
     return (
@@ -12,6 +13,7 @@ const Transaction = ({className}) => {
                 <p className={`transaction__value ${className}`}>USD <span>251</span></p>
                 <BsThreeDots className="transaction__icon" />
             </div>
+            <ModifyMenu />
         </div>
     )
 }
