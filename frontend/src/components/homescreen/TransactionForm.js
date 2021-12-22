@@ -9,12 +9,21 @@ import CustomSelect from "./CustomSelect";
 const TransactionForm = () => {
 
     const [transactionDate, setTransactionDate] = useState(new Date());
+    const [resetSelect, setResetSelect] = useState(false);
+ 
+
+    const handleNewTransaction = (e) => {
+        e.preventDefault();
+
+        setResetSelect(true);
+        setTransactionDate(new Date());
+    }
 
     return (
         <div className="transaction-form">
             <h2 className="transaction-form__title"> New Transaction </h2>
 
-            <form>
+            <form onSubmit={handleNewTransaction}>
                 <div className="transaction-form__group">
                     <label> Name </label>
                     <div className="transaction-form__input-div">
@@ -41,7 +50,7 @@ const TransactionForm = () => {
                 <div className="transaction-form__group">
                     <label> Category </label>
                     <div className="transaction-form__date-div">
-                        <CustomSelect /> 
+                        <CustomSelect reset={ resetSelect }/> 
                     </div>
                 </div>
 

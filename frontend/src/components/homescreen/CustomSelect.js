@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState, useRef } from "react";
 
 import Select from 'react-select';
 
@@ -26,18 +26,19 @@ const customStyles = {
     
 };
 
-const CustomSelect = ({value = null}) => {
+const CustomSelect = ({reset = false}) => {
 
     const [selectedOption, setSelectedOption] = useState(null);
 
-    useEffect(() => {
-        value && setSelectedOption( value )
-    }, [value])
+    useLayoutEffect(() => {
+       reset && setSelectedOption(null);
+    }, [reset])
 
     return (
         <div className="new-transaction__select-div">
             <Select  
                 defaultValue={selectedOption}
+                value={selectedOption}               
                 menuPlacement="top"
                 onChange={setSelectedOption}                     
                 options={ options }
