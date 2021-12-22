@@ -8,7 +8,7 @@ const History = () => {
 
     return (
         <div className="history">
-            <div>
+            <div className="history__header">
                 <h2 className="history__title">History</h2>
                 <div className="history__search"> 
                     <p className="history__text">Search by category: </p>
