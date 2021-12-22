@@ -49,6 +49,7 @@ const TransactionForm = () => {
                     <Button 
                         text="Add transaction"
                         className="transaction-form__button"
+                        type="submit"
                     />
                 </div>                
             </form>
