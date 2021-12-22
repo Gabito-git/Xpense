@@ -1,6 +1,6 @@
 import { BsThreeDots } from "react-icons/bs";
 
-const Transaction = () => {
+const Transaction = ({className}) => {
     return (
         <div className="transaction">
             <div className="transaction__left">
@@ -8,8 +8,9 @@ const Transaction = () => {
                 <p className="transaction__date">Today at 12:13 PM</p>
             </div>
             <div className="transaction__right">
-                <p className="transaction__value">USD <span>251</span></p>
-                <BsThreeDots />
+                <p>Category</p>
+                <p className={`transaction__value ${className}`}>USD <span>251</span></p>
+                <BsThreeDots className="transaction__icon" />
             </div>
         </div>
     )
