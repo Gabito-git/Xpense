@@ -9,8 +9,7 @@ import CustomSelect from "./CustomSelect";
 const TransactionForm = () => {
 
     const [transactionDate, setTransactionDate] = useState(new Date());
-    const [resetSelect, setResetSelect] = useState(false);
- 
+    const [resetSelect, setResetSelect] = useState(false); 
 
     const handleNewTransaction = (e) => {
         e.preventDefault();
