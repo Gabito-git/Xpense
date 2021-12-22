@@ -6,7 +6,7 @@ export const isValidAmount = ( amount ) => {
 
     return {
         ok: true,
-        concept: amount > 0 ? 'income': 'expense',
+        type: amount > 0 ? 'income': 'expense',
         value: Math.abs(amount)
     }
     
