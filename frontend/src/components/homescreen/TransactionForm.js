@@ -14,7 +14,7 @@ const TransactionForm = () => {
                 </div>
                 <div className="transaction-form__group">
                     <label> Amount (use "-" for expenses) </label>
-                    <div classname="transaction-form__input-div">
+                    <div className="transaction-form__input-div">
                         <input className="transaction-form__input" />
                     </div>
                 </div>
