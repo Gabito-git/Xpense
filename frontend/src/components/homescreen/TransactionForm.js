@@ -4,18 +4,24 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import  Button from '../../components/Button';
+import { useForm } from "../../hooks/useForm";
 import CustomSelect from "./CustomSelect";
 
 const TransactionForm = () => {
 
     const [transactionDate, setTransactionDate] = useState(new Date());
-    const [resetSelect, setResetSelect] = useState(false); 
+    const [resetSelect, setResetSelect] = useState(false);
+    const { formState:{ concept, amount }, handleInputChange, reset } = useForm({
+        concept: '',
+        amount: ''
+    });
 
     const handleNewTransaction = (e) => {
         e.preventDefault();
 
         setResetSelect(true);
         setTransactionDate(new Date());
+        reset();
     }
 
     return (
@@ -26,13 +32,23 @@ const TransactionForm = () => {
                 <div className="transaction-form__group">
                     <label> Name </label>
                     <div className="transaction-form__input-div">
-                        <input className="transaction-form__input" />
+                        <input 
+                            className="transaction-form__input" 
+                            name="concept"
+                            value={ concept }
+                            onChange={ handleInputChange }
+                        />
                     </div>
                 </div>
                 <div className="transaction-form__group">
                     <label> Amount (use "-" for expenses) </label>
                     <div className="transaction-form__input-div">
-                        <input className="transaction-form__input" />
+                        <input 
+                            className="transaction-form__input" 
+                            name="amount"
+                            value={ amount }
+                            onChange={ handleInputChange }
+                        />
                     </div>
                 </div>
                 <div className="transaction-form__group">
