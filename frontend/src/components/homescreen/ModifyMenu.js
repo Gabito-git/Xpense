@@ -3,7 +3,7 @@ import { MdDeleteForever } from "react-icons/md";
 
 const ModifyMenu = () => {
     return (
-        <div className="modify animate__animated animate__backInRight">
+        <div className="modify animate__animated animate__bounceIn">
             <div className="modify__left">
                 <GrUpdate />
                 <p>Update</p>
