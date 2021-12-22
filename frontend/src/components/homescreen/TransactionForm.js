@@ -1,6 +1,14 @@
+import { useState } from "react";
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 import  Button from '../../components/Button';
 
 const TransactionForm = () => {
+
+    const [transactionDate, setTransactionDate] = useState(new Date());
+
     return (
         <div className="transaction-form">
             <h2 className="transaction-form__title"> New Transaction </h2>
@@ -18,10 +26,24 @@ const TransactionForm = () => {
                         <input className="transaction-form__input" />
                     </div>
                 </div>
-                <Button 
-                    text="Add transaction"
-                    className="transaction-form__button"
-                />
+                <div className="transaction-form__group">
+                    <label> Date </label>
+                    <div className="transaction-form__date-div">
+                        <DatePicker 
+                            selected={transactionDate} 
+                            onChange={(date) => setTransactionDate(date)} 
+                            className="transaction-form__date"
+                        />
+                    </div>
+                </div>
+
+                <div className="transaction-form__button-div">
+                    <Button 
+                        text="Add transaction"
+                        className="transaction-form__button"
+                    />
+                </div>
+                
             </form>
 
         </div>
