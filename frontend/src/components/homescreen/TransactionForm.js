@@ -8,7 +8,7 @@ const TransactionForm = () => {
             <form>
                 <div className="transaction-form__group">
                     <label> Name </label>
-                    <div classname="transaction-form__input-div">
+                    <div className="transaction-form__input-div">
                         <input className="transaction-form__input" />
                     </div>
                 </div>
