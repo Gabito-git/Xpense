@@ -2,7 +2,9 @@ import { useState } from "react";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Swal from "sweetalert2";
 
+import { isValidAmount } from "../../helpers/isValidAmount";
 import  Button from '../../components/Button';
 import { useForm } from "../../hooks/useForm";
 import CustomSelect from "./CustomSelect";
@@ -19,6 +21,27 @@ const TransactionForm = () => {
     const handleNewTransaction = (e) => {
         e.preventDefault();
 
+        if( concept.trim().length === 0 ){
+            return Swal.fire(
+                'Oops...', 'Please provide a valid concept', 'error'
+            )
+        } 
+        
+        const { ok, value, type } = isValidAmount( amount );
+
+        if( !ok ){
+            return Swal.fire(
+                'Oops...', 'Please provide a valid amount', 'error'
+            )
+        }
+
+        if( selectedOption === null){
+            return Swal.fire(
+                'Oops...', 'Please provide a category', 'error'
+            )
+        }
+        
+        
         setSelectedOption(null);
         setTransactionDate(new Date());
         reset();
