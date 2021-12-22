@@ -1,5 +1,6 @@
 import Button from "../components/Button"
 import Balance from "../components/homescreen/Balance"
+import TransactionForm from "../components/homescreen/TransactionForm"
 
 const HomeScreen = () => {
     return (
@@ -15,9 +16,8 @@ const HomeScreen = () => {
             <main className="homescreen__main">
                 <div className="homescreen__left">
                     <Balance />
-                    <div>
-
-                    </div>
+                    
+                    <TransactionForm />
                 </div>
                 <div className="homescreen__right">
 
