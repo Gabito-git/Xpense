@@ -10,7 +10,7 @@ import CustomSelect from "./CustomSelect";
 const TransactionForm = () => {
 
     const [transactionDate, setTransactionDate] = useState(new Date());
-    const [resetSelect, setResetSelect] = useState(false);
+    const [selectedOption, setSelectedOption] = useState(null);
     const { formState:{ concept, amount }, handleInputChange, reset } = useForm({
         concept: '',
         amount: ''
@@ -19,7 +19,7 @@ const TransactionForm = () => {
     const handleNewTransaction = (e) => {
         e.preventDefault();
 
-        setResetSelect(true);
+        setSelectedOption(null);
         setTransactionDate(new Date());
         reset();
     }
@@ -65,7 +65,10 @@ const TransactionForm = () => {
                 <div className="transaction-form__group">
                     <label> Category </label>
                     <div className="transaction-form__date-div">
-                        <CustomSelect reset={ resetSelect }/> 
+                        <CustomSelect 
+                            selectedOption={ selectedOption }
+                            setSelectedOption = { setSelectedOption }
+                        /> 
                     </div>
                 </div>
 

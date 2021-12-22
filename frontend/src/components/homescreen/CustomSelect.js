@@ -26,13 +26,7 @@ const customStyles = {
     
 };
 
-const CustomSelect = ({reset = false}) => {
-
-    const [selectedOption, setSelectedOption] = useState(null);
-
-    useLayoutEffect(() => {
-       reset && setSelectedOption(null);
-    }, [reset])
+const CustomSelect = ({ selectedOption, setSelectedOption }) => {   
 
     return (
         <div className="new-transaction__select-div">
