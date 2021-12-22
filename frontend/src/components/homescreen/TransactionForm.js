@@ -18,7 +18,10 @@ const TransactionForm = () => {
                         <input className="transaction-form__input" />
                     </div>
                 </div>
-                <Button text="Add transaction"/>
+                <Button 
+                    text="Add transaction"
+                    className="transaction-form__button"
+                />
             </form>
 
         </div>
