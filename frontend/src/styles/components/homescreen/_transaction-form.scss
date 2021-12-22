@@ -50,7 +50,12 @@
         color: white;
         font-family: inherit;
         margin-top: 2rem;
-        padding: 1rem 1.5rem
+        padding: 1rem 1.5rem;
+        transition: all .3s;
+
+        &:hover{
+            background-color: $color-secondary;
+        }
     }
 
 }
