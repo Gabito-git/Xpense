@@ -26,7 +26,7 @@ const customStyles = {
     
 };
 
-const CustomSelect = (value = null) => {
+const CustomSelect = ({value = null}) => {
 
     const [selectedOption, setSelectedOption] = useState(null);
 
