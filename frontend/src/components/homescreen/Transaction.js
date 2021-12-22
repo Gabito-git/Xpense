@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import ModifyMenu from "./ModifyMenu";
 
 const Transaction = ({className}) => {
+
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
         <div className="transaction">
             <div className="transaction__left">
@@ -11,9 +15,16 @@ const Transaction = ({className}) => {
             <div className="transaction__right">
                 <p>Category</p>
                 <p className={`transaction__value ${className}`}>USD <span>251</span></p>
-                <BsThreeDots className="transaction__icon" />
+                <BsThreeDots className="transaction__icon" onClick={ () => setIsOpen(true) }/>
             </div>
-            <ModifyMenu />
+            {
+                isOpen && (
+                    <div onMouseLeave={ () => setIsOpen(false) }>
+                        <ModifyMenu />
+                    </div>
+                )
+            }
+            
         </div>
     )
 }
