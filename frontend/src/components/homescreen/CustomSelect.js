@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Select from 'react-select';
 
@@ -26,9 +26,13 @@ const customStyles = {
     
 };
 
-const CustomSelect = () => {
+const CustomSelect = (value = null) => {
 
     const [selectedOption, setSelectedOption] = useState(null);
+
+    useEffect(() => {
+        value && setSelectedOption( value )
+    }, [value])
 
     return (
         <div className="new-transaction__select-div">
