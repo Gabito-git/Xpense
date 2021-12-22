@@ -1,0 +1,27 @@
+.transaction{
+    align-items: center;
+    display: flex;
+    border-bottom: 2px solid $color-primary;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+
+    &__right{
+
+        align-items: center;
+        display: flex;
+    }
+
+    &__value{
+        font-size: 1.1rem;
+        margin:0 1rem;
+
+        span{
+            font-size: 1.3rem;
+        }
+    }
+
+    &__icon{
+        cursor: pointer;
+        font-size: 1.5rem;
+    }
+}
