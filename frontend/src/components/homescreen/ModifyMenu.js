@@ -11,26 +11,38 @@ const ModifyMenu = ({ transactionId }) => {
     const { dispatch } = useContext(TransactionContext);
 
     const handleDelete = async() => {
+        const answer = await Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        })
 
-        try {
-            const response = await fetch(`http://localhost:4000/api/transactions/${ transactionId }`, {
-                method: 'DELETE'
-            })
-            
-            const resp = await response.json();
-
-            if(resp.errors){
-                return Swal.fire(
-                    'Oops...', resp.errors[0].message, 'error'
-                )
-            }
+        if( answer.isConfirmed ){
+            try {
+                const response = await fetch(`http://localhost:4000/api/transactions/${ transactionId }`, {
+                    method: 'DELETE'
+                })
+                
+                const resp = await response.json();
     
-            dispatch( deleteTransaction( transactionId ) );
-            
-        } catch (error) {
-            console.log(error)
-        }
-
+                if(resp.errors){
+                    return Swal.fire(
+                        'Oops...', resp.errors[0].message, 'error'
+                    )
+                }
+        
+                dispatch( deleteTransaction( transactionId ) );
+                
+            } catch (error) {
+                console.log(error)
+            }
+        }else{
+            return;
+        }    
     }
 
     return (
