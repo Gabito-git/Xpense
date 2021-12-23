@@ -3,6 +3,12 @@ import { useContext, useState } from "react"
 import CustomSelect from "./CustomSelect"
 import Transaction from "./Transaction"
 import { TransactionContext } from '../../context/transactionContext'
+import { options } from "./TransactionForm"
+
+const optionsToUse=[
+    { value: 'all', label: 'All items' },
+    ...options,
+]
 
 const History = () => {
 
@@ -19,6 +25,8 @@ const History = () => {
                         <CustomSelect 
                             selectedOption={ selectedOption }
                             setSelectedOption={ setSelectedOption }
+                            options={ optionsToUse }
+                            defaultValue={ optionsToUse[0] }
                         />
                     </div>                    
                 </div>                
