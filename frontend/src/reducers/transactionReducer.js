@@ -5,7 +5,7 @@ export const initState = {
     transactions: []
 }
 
-const transactionReducer = (state = initState, action) => {
+export const transactionReducer = (state = initState, action) => {
 
     switch ( action.type ) {
         case 'ADD_TRANSACTION':
@@ -20,4 +20,4 @@ const transactionReducer = (state = initState, action) => {
     
 }
 
-export default transactionReducer
+
