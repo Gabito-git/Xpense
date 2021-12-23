@@ -1,4 +1,4 @@
-const initState = {
+export const initState = {
     incomes: 0,
     expenses: 0,
     total: 0,
