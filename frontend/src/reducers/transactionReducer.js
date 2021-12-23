@@ -21,7 +21,7 @@ export const transactionReducer = (state = initState, action) => {
                 ? state.expenses + action.payload.amount 
                 : state.expenses,
                 total,
-                transactions: [action.payload, ...state.transactions]
+                transactions: [action.payload, ...state.transactions].splice(0,10)
             }
     
         default:
