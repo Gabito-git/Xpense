@@ -16,13 +16,13 @@ const customStyles = {
     
 };
 
-const CustomSelect = ({ selectedOption, setSelectedOption, options, defaultValue = null}) => {   
+const CustomSelect = ({ selectedOption, setSelectedOption, options}) => {   
 
     return (
         <div className="new-transaction__select-div">
             <Select  
-                defaultValue={defaultValue || selectedOption}
-                value={ defaultValue || selectedOption}               
+                defaultValue={selectedOption}
+                value={ selectedOption}               
                 menuPlacement="top"
                 onChange={setSelectedOption}                     
                 options={ options }

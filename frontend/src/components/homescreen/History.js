@@ -12,8 +12,8 @@ const optionsToUse=[
 
 const History = () => {
 
-    const [selectedOption, setSelectedOption] = useState(null);
-    const { state:{ transactions } } = useContext( TransactionContext );
+    const { state:{ transactions }} = useContext( TransactionContext );
+    const [selectedOption, setSelectedOption] = useState(optionsToUse[0]);
 
     return (
         <div className="history">
