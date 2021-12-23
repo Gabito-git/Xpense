@@ -3,7 +3,7 @@ import { GrUpdate } from "react-icons/gr";
 import { MdDeleteForever } from "react-icons/md";
 import Swal from "sweetalert2";
 
-import { deleteTransaction } from "../../actions/transactions";
+import { deleteTransaction, setToModify } from "../../actions/transactions";
 import { TransactionContext } from "../../context/transactionContext";
 
 const ModifyMenu = ({ transactionId }) => {
@@ -45,9 +45,18 @@ const ModifyMenu = ({ transactionId }) => {
         }    
     }
 
+    const handleUpdate = () => {
+        console.log('modify')
+        dispatch( setToModify( transactionId ) )
+
+    }
+
     return (
         <div className="modify animate__animated animate__bounceIn">
-            <div className="modify__left">
+            <div 
+                className="modify__left"
+                onClick={ handleUpdate }
+            >
                 <GrUpdate />
                 <p>Update</p>
             </div>
