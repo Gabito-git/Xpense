@@ -1,10 +1,13 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+
 import CustomSelect from "./CustomSelect"
 import Transaction from "./Transaction"
+import { TransactionContext } from '../../context/transactionContext'
 
 const History = () => {
 
     const [selectedOption, setSelectedOption] = useState(null);
+    const { state:{ transactions } } = useContext( TransactionContext );
 
     return (
         <div className="history">
@@ -20,7 +23,14 @@ const History = () => {
                     </div>                    
                 </div>                
             </div>
-            <Transaction />
+            {
+                transactions.map( transaction => (
+                    <Transaction 
+                        style={ { color: transaction.type === 'income' ? 'green': 'red' } } 
+                        {...transaction}
+                    />
+                ) )
+            }
         </div>
     )
 }
