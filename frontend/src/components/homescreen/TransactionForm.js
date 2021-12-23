@@ -6,6 +6,17 @@ import  Button from '../../components/Button';
 import CustomSelect from "./CustomSelect";
 import useTransaction from "../../hooks/useTransaction";
 
+export const options = [
+    { value: 'salary', label: 'Salary' },
+    { value: 'interests', label: 'Interests' },
+    { value: 'food', label: 'Food' },
+    { value: 'transportation', label: 'Transportation' },
+    { value: 'gift', label: 'Gift' },
+    { value: 'family', label: 'Family' },
+    { value: 'other', label: 'Other' },
+];
+
+
 const TransactionForm = () => {
 
     const {
@@ -64,6 +75,7 @@ const TransactionForm = () => {
                         <CustomSelect 
                             selectedOption={ selectedOption }
                             setSelectedOption = { setSelectedOption }
+                            options={ options }
                         /> 
                     </div>
                 </div>

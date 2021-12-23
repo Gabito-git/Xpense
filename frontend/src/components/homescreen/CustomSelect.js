@@ -1,16 +1,6 @@
-import { useLayoutEffect, useState, useRef } from "react";
 
 import Select from 'react-select';
 
-const options = [
-    { value: 'salary', label: 'Salary' },
-    { value: 'interests', label: 'Interests' },
-    { value: 'food', label: 'Food' },
-    { value: 'transportation', label: 'Transportation' },
-    { value: 'gift', label: 'Gift' },
-    { value: 'family', label: 'Family' },
-    { value: 'other', label: 'Other' },
-];
 
 const customStyles = {   
     option: (styles, {  isFocused }) => {
@@ -26,12 +16,12 @@ const customStyles = {
     
 };
 
-const CustomSelect = ({ selectedOption, setSelectedOption }) => {   
+const CustomSelect = ({ selectedOption, setSelectedOption, options, defaultValue }) => {   
 
     return (
         <div className="new-transaction__select-div">
             <Select  
-                defaultValue={selectedOption}
+                defaultValue={defaultValue || selectedOption}
                 value={selectedOption}               
                 menuPlacement="top"
                 onChange={setSelectedOption}                     
