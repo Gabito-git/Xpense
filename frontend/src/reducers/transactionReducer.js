@@ -9,7 +9,15 @@ export const transactionReducer = (state = initState, action) => {
             return {
                 ...state,
                 transactions: [action.payload, ...state.transactions]
-            }    
+            }
+
+        case 'DEL_TRANSACTION':
+            return {
+                ...state,
+                transactions: state.transactions.filter( 
+                    transaction => transaction.id !== action.payload
+                 )
+            }
     
         default:
             return state;
