@@ -13,7 +13,7 @@ const validateFields     = require('../middlewares/validateFields');
 const router = Router();
 
 const categories = [
-    'all', 'salary', 'interests', 'food', 'transportation', 'gift', 'family', 'other'
+    'salary', 'interests', 'food', 'transportation', 'gift', 'family', 'other'
 ]
 
 router.post('/',[
