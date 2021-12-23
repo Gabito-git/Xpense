@@ -124,17 +124,10 @@ const searchByCategory = async(req, res) => {
     const { category } = req.params;
     let transactions;
     
-    try {
-
-        if( category ==='all' ){
-            transactions = await pool.query(
-                "SELECT * FROM transactions ORDER BY date DESC LIMIT 10"
-            )           
-        }else{
-            transactions = await pool.query(
-                "SELECT * FROM transactions WHERE category=$1", [ category ]
-            )
-        }        
+    try {      
+        transactions = await pool.query(
+            "SELECT * FROM transactions WHERE category=$1", [ category ]
+        )              
 
         res.status(200).json({ transactions: transactions.rows })
 
