@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import ModifyMenu from "./ModifyMenu";
 
-const Transaction = ({style, concept, amount, date, category}) => {
+const Transaction = ({style, concept, amount, date, category, transaction_id}) => {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -20,7 +20,9 @@ const Transaction = ({style, concept, amount, date, category}) => {
             {
                 isOpen && (
                     <div onMouseLeave={ () => setIsOpen(false) }>
-                        <ModifyMenu />
+                        <ModifyMenu 
+                            transactionId = { transaction_id }
+                        />
                     </div>
                 )
             }
