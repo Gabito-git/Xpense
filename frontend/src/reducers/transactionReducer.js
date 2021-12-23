@@ -12,10 +12,11 @@ export const transactionReducer = (state = initState, action) => {
             }
 
         case 'DEL_TRANSACTION':
+            console.log(action.payload)
             return {
                 ...state,
                 transactions: state.transactions.filter( 
-                    transaction => transaction.id !== action.payload
+                    transaction => transaction.transaction_id !== action.payload
                  )
             }
     
