@@ -2,7 +2,19 @@ import { useContext } from "react"
 import { TransactionContext } from "../../context/transactionContext"
 
 const Balance = () => {
-    const { state: { incomes, expenses, total } } = useContext(TransactionContext);
+    const { state: { transactions } } = useContext(TransactionContext);
+    console.log(transactions)
+    let incomes = 0, expenses = 0  
+
+    transactions.forEach( transaction => {
+        if( transaction.type === 'income' ){
+            incomes += transaction.amount
+        }else{
+            expenses += transaction.amount
+        }
+    } )
+
+    const total = incomes - expenses
 
     return (
         <div className="balance">
