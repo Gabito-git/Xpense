@@ -2,8 +2,7 @@ import { useContext } from "react"
 import { TransactionContext } from "../../context/transactionContext"
 
 const Balance = () => {
-    const { state: { transactions } } = useContext(TransactionContext);
-    console.log(transactions)
+    const { state: { transactions } } = useContext(TransactionContext);   
     let incomes = 0, expenses = 0  
 
     transactions.forEach( transaction => {
