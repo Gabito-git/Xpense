@@ -8,7 +8,7 @@ export const transactionReducer = (state = initState, action) => {
         case 'ADD_TRANSACTION':
             return {
                 ...state,
-                transactions: [action.payload, ...state.transactions]
+                transactions: [action.payload, ...state.transactions].splice(0,10)
             }
 
         case 'DEL_TRANSACTION':
