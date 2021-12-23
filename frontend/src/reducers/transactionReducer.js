@@ -1,5 +1,6 @@
 export const initState = {   
-    transactions: []
+    transactions: [],
+    toModify: null
 }
 
 export const transactionReducer = (state = initState, action) => {
@@ -12,12 +13,25 @@ export const transactionReducer = (state = initState, action) => {
             }
 
         case 'DEL_TRANSACTION':
-            console.log(action.payload)
             return {
                 ...state,
                 transactions: state.transactions.filter( 
                     transaction => transaction.transaction_id !== action.payload
                  )
+            }
+
+        case 'SET_TOMODIFY':
+            return {
+                ...state,
+                toModify: state.transactions.filter( 
+                    t => t.transaction_id === action.payload 
+                )
+            }
+
+        case 'UNSET_TOMODIFY':
+            return{
+                ...state,
+                toModify: null
             }
     
         default:
