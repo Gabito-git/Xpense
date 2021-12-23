@@ -1,9 +1,12 @@
+import { TransactionContextProvider } from "./context/transactionContext"
 import HomeScreen from "./screens/HomeScreen"
 
 const App = () => {
   return (
     <div>
-      <HomeScreen />
+      <TransactionContextProvider>
+        <HomeScreen />
+      </TransactionContextProvider>
     </div>
   )
 }
