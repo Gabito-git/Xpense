@@ -40,12 +40,12 @@ const useTransaction = () => {
                 'Oops...', 'Please provide a valid concept', 'error'
             )
         } 
-        
-        const { ok, value, type } = isValidAmount( amount );
+        const flag = toModify ? true: false;
+        const { ok, message, value, type } = isValidAmount( amount, flag);
 
         if( !ok ){
             return Swal.fire(
-                'Oops...', 'Please provide a valid amount', 'error'
+                'Oops...', message, 'error'
             )
         }
 
