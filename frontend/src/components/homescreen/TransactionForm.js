@@ -4,9 +4,11 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import  Button from '../../components/Button';
 import CustomSelect from "./CustomSelect";
-import useTransaction from "../../hooks/useTransaction";
-import { useContext, useEffect } from "react";
+import useFormControl from "../../hooks/useFormControl";
+import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { TransactionContext } from "../../context/transactionContext";
+import transactionValidation from "../../helpers/transactionValidation";
+import { newTransaction } from "../../actions/transactions";
 
 export const options = [
     { value: 'salary', label: 'Salary' },
@@ -18,40 +20,71 @@ export const options = [
     { value: 'other', label: 'Other' },
 ];
 
+// const initialValues ={
+//     concept: '',
+//     amount: '',
+//     date: new Date(),
+//     category: null
+// }
+
+const funct = async(values, dispatch, reset) => {
+    const { concept, amount, date, category } = values;
+    
+    const transaction = {
+        concept, 
+        amount: Math.abs(amount),
+        date,
+        category: category.value,
+        type: amount > 0 ? 'income' : 'expense'
+    }
+
+    const response = await fetch('http://localhost:4000/api/transactions', {
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify( transaction )
+    })
+
+    const newTransactionDb = await response.json();
+
+    dispatch(newTransaction( newTransactionDb ) );
+    reset();
+}
 
 const TransactionForm = () => {
 
-    const { state: { toModify } } = useContext(TransactionContext);
+    const { state: { toModify }, dispatch } = useContext(TransactionContext);
+    const [initialValues, setInitialValues] = useState({
+        concept: '',
+        amount: '',
+        date: new Date(),
+        category: null
+    })
 
-    const {
-        transactionDate,
-        setTransactionDate,
-        selectedOption,
-        setSelectedOption,
-        concept, 
-        amount,
-        
-        handleInputChange,
-        handleNewTransaction
-    } = useTransaction();
-    
+    const { 
+        values, 
+        errors, 
+        functions } = useFormControl( {initialValues, transactionValidation, funct, dispatch} )   
+
     return (
         <div className="transaction-form">
             <h2 className="transaction-form__title"> 
                 { toModify ? 'Modify Transaction': 'New Transaction' }
             </h2>
 
-            <form onSubmit={handleNewTransaction}>
+            <form onSubmit={ functions.handleSubmit }>
                 <div className="transaction-form__group">
                     <label> Name </label>
                     <div className="transaction-form__input-div">
                         <input 
                             className="transaction-form__input" 
                             name="concept"
-                            value={ concept }
-                            onChange={ handleInputChange }
+                            value={ values.concept }
+                            onChange={ functions.handleInputChange }
                         />
                     </div>
+                    { errors?.concept && <div style={ {color: 'red'} }>{ errors.concept }</div> }
                 </div>
                 <div className="transaction-form__group">
                     <label> 
@@ -61,17 +94,18 @@ const TransactionForm = () => {
                         <input 
                             className="transaction-form__input" 
                             name="amount"
-                            value={ amount }
-                            onChange={ handleInputChange }
+                            value={ values.amount }
+                            onChange={ functions.handleInputChange }
                         />
                     </div>
+                    { errors?.amount && <div style={ {color: 'red'}}>{ errors.amount }</div> }
                 </div>
                 <div className="transaction-form__group">
                     <label> Date </label>
                     <div className="transaction-form__date-div">
                         <DatePicker 
-                            selected={transactionDate} 
-                            onChange={(date) => setTransactionDate(date)} 
+                            selected={ values.date } 
+                            onChange={(date) => functions.handleThirdPartyChange( 'date', date ) } 
                             className="transaction-form__date"
                         />
                     </div>
@@ -81,11 +115,12 @@ const TransactionForm = () => {
                     <label> Category </label>
                     <div className="transaction-form__date-div">
                         <CustomSelect 
-                            selectedOption={ selectedOption }
-                            setSelectedOption = { setSelectedOption }
+                            value={ values.category }
+                            onChange = { ( data ) => functions.handleThirdPartyChange('category', data) }
                             options={ options }
                         /> 
                     </div>
+                    { errors?.category && <div style={ {color: 'red'}}>{ errors.category }</div> }
                 </div>
 
                 <div className="transaction-form__button-div">
