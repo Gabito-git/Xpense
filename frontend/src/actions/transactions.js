@@ -13,10 +13,6 @@ export const setToModify = ( transactionId ) => ({
     payload: transactionId
 })
 
-export const unsetToModify = ( ) => ({
-    type: 'UNSET_TOMODFY'
-})
-
 export const updateTransaction = ( transaction ) => ({
     type: 'UPDATE_TRANSACTION',
     payload: transaction
