@@ -16,15 +16,15 @@ const customStyles = {
     
 };
 
-const CustomSelect = ({ selectedOption, setSelectedOption, options}) => {   
+const CustomSelect = ({ value, onChange, options}) => {   
 
     return (
         <div className="new-transaction__select-div">
             <Select  
-                defaultValue={selectedOption}
-                value={ selectedOption}               
+                defaultValue={ value }
+                value={ value }               
                 menuPlacement="top"
-                onChange={setSelectedOption}                     
+                onChange={ onChange }                     
                 options={ options }
                 styles={ customStyles }
                 theme={(theme) => ({
