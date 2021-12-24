@@ -66,6 +66,16 @@ const TransactionForm = () => {
         values, 
         errors, 
         functions } = useFormControl( {initialValues, transactionValidation, funct, dispatch} )   
+        
+    useEffect(() => {
+        if( toModify ){
+            setInitialValues({
+                ...toModify,
+                date: new Date(toModify.date),
+                category: {value:'gift', label: 'Gift'}
+            })            
+        }
+    }, [ toModify ])
 
     return (
         <div className="transaction-form">
