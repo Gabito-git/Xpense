@@ -55,6 +55,7 @@ const funct = async(values, dispatch, reset) => {
 const TransactionForm = () => {
 
     const { state: { toModify }, dispatch } = useContext(TransactionContext);
+
     const [initialValues, setInitialValues] = useState({
         concept: '',
         amount: '',
@@ -72,7 +73,7 @@ const TransactionForm = () => {
             setInitialValues({
                 ...toModify,
                 date: new Date(toModify.date),
-                category: {value:'gift', label: 'Gift'}
+                category: options.filter( opt => opt.value === toModify.value)[0]
             })            
         }
     }, [ toModify ])
