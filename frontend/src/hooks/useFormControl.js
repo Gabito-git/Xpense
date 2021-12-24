@@ -14,11 +14,13 @@ const useFormControl = ( {initialValues, validation, onSubmit, dispatch}) => {
 
     const handleSubmit = (e) => {     
         e.preventDefault();  
-        
-        setErrors( validation( values ) );
-        if(!errors){            
+    
+        const errors = validation(values)
+        setErrors( errors );
+  
+        if(Object.keys( errors ).length === 0){           
             onSubmit( values, dispatch, reset );
-            setErrors( null );
+            setErrors( {} );
         }
     }
  
