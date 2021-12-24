@@ -1,7 +1,6 @@
 const transactionValidation = ( values ) => {
 
     const { concept, amount, category } = values;
-    console.log(category)
 
     const errors = {}
     
