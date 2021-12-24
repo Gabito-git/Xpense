@@ -25,7 +25,7 @@ export const transactionReducer = (state = initState, action) => {
                 ...state,
                 toModify: state.transactions.filter( 
                     t => t.transaction_id === action.payload 
-                )
+                )[0]
             }
 
         case 'UNSET_TOMODIFY':

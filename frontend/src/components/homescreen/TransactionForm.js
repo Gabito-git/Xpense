@@ -1,12 +1,10 @@
-import { useContext } from "react";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import CustomSelect from "./CustomSelect";
 import  Button from '../../components/Button';
+import CustomSelect from "./CustomSelect";
 import useTransaction from "../../hooks/useTransaction";
-import { TransactionContext } from "../../context/transactionContext";
 
 export const options = [
     { value: 'salary', label: 'Salary' },
@@ -20,8 +18,7 @@ export const options = [
 
 
 const TransactionForm = () => {
-    
-    const { state:{ toModify }, dispatch } = useContext(TransactionContext);
+
     const {
         transactionDate,
         setTransactionDate,
@@ -32,8 +29,7 @@ const TransactionForm = () => {
         
         handleInputChange,
         handleNewTransaction
-    } = useTransaction( dispatch );
-
+    } = useTransaction();
     
     return (
         <div className="transaction-form">

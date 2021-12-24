@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import Swal from "sweetalert2";
 
+import { TransactionContext } from "../context/transactionContext";
 import { newTransaction } from "../actions/transactions";
 import { useForm } from "./useForm";
 import { isValidAmount } from "../helpers/isValidAmount";
 
-const useTransaction = ( dispatch ) => {
+const useTransaction = () => {
 
     const [transactionDate, setTransactionDate] = useState(new Date());
     const [selectedOption, setSelectedOption] = useState(null);
+    const { dispatch } = useContext(TransactionContext);
     const { formState:{ concept, amount }, handleInputChange, reset } = useForm({
         concept: '',
         amount: ''
