@@ -3,9 +3,9 @@ export const newTransaction = ( transaction ) => ({
     payload: transaction
 })
 
-export const deleteTransaction = ( id ) => ({
+export const deleteTransaction = ( transactionId ) => ({
     type: 'DEL_TRANSACTION',
-    payload: id
+    payload: transactionId
 })
 
 export const setToModify = ( transactionId ) => ({
@@ -15,4 +15,9 @@ export const setToModify = ( transactionId ) => ({
 
 export const unsetToModify = ( ) => ({
     type: 'UNSET_TOMODFY'
+})
+
+export const updateTransaction = ( transaction ) => ({
+    type: 'UPDATE_TRANSACTION',
+    payload: transaction
 })
