@@ -5,6 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import  Button from '../../components/Button';
 import CustomSelect from "./CustomSelect";
 import useTransaction from "../../hooks/useTransaction";
+import { useContext, useEffect } from "react";
+import { TransactionContext } from "../../context/transactionContext";
 
 export const options = [
     { value: 'salary', label: 'Salary' },
@@ -18,6 +20,8 @@ export const options = [
 
 
 const TransactionForm = () => {
+
+    const { state: { toModify } } = useContext(TransactionContext);
 
     const {
         transactionDate,
@@ -33,7 +37,9 @@ const TransactionForm = () => {
     
     return (
         <div className="transaction-form">
-            <h2 className="transaction-form__title"> New Transaction </h2>
+            <h2 className="transaction-form__title"> 
+                { toModify ? 'Modify Transaction': 'New Transaction' }
+            </h2>
 
             <form onSubmit={handleNewTransaction}>
                 <div className="transaction-form__group">
@@ -48,7 +54,9 @@ const TransactionForm = () => {
                     </div>
                 </div>
                 <div className="transaction-form__group">
-                    <label> Amount (use "-" for expenses) </label>
+                    <label> 
+                        { toModify ? 'Amount': 'Amount (use "-" for expenses)' }                        
+                    </label>
                     <div className="transaction-form__input-div">
                         <input 
                             className="transaction-form__input" 
@@ -82,7 +90,7 @@ const TransactionForm = () => {
 
                 <div className="transaction-form__button-div">
                     <Button 
-                        text="Add transaction"
+                        text={ toModify ? 'Update': 'Add Transaction' }
                         className="transaction-form__button"
                         type="submit"
                     />
