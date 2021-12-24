@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useLayoutEffect, useState } from "react";
 
 import Swal from "sweetalert2";
 
@@ -11,11 +11,18 @@ const useTransaction = () => {
 
     const [transactionDate, setTransactionDate] = useState(new Date());
     const [selectedOption, setSelectedOption] = useState(null);
-    const { dispatch } = useContext(TransactionContext);
+    const {state: { toModify } ,dispatch } = useContext(TransactionContext);
     const { formState:{ concept, amount }, handleInputChange, reset } = useForm({
-        concept: '',
-        amount: ''
+        concept: toModify?.concept || '',
+        amount: toModify?.amount || ''
     });
+
+    useLayoutEffect(() => {
+        if( toModify ){           
+           console.log('reset', toModify.concept)
+           reset()
+       }       
+    }, [toModify])
 
     const handleNewTransaction = async(e) => {
         e.preventDefault();
