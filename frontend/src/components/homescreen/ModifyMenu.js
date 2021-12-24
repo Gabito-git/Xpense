@@ -45,10 +45,8 @@ const ModifyMenu = ({ transactionId }) => {
         }    
     }
 
-    const handleUpdate = () => {
-        console.log('modify')
+    const handleUpdate = () => {      
         dispatch( setToModify( transactionId ) )
-
     }
 
     return (

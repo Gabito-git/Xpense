@@ -1,5 +1,4 @@
 export const isValidAmount = ( amount, flag ) => {
-    console.log(amount)
 
     if( flag && amount < 0 ){
         return {
