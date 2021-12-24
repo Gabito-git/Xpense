@@ -33,6 +33,17 @@ export const transactionReducer = (state = initState, action) => {
                 ...state,
                 toModify: null
             }
+
+        case 'UPDATE_TRANSACTION':
+            return{
+                ...state,
+                transactions: state.transactions.map( tran => {
+                    return tran.transaction_id === action.payload.transaction__id
+                            ? action.payload
+                            : tran
+                } ),
+                toModify: null
+            }
     
         default:
             return state;
