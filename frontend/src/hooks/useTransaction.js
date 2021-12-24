@@ -17,9 +17,20 @@ const useTransaction = () => {
         amount: toModify?.amount || ''
     });
 
-    useLayoutEffect(() => {
-        toModify && reset()       
+    useEffect(() => {
+        if( toModify ){
+            reset()
+            setSelectedOption( setCategoryToModify( toModify.category ) )
+            setTransactionDate( new Date(toModify.date) )
+        }       
     }, [toModify])
+
+    const setCategoryToModify = ( value ) => {
+        const [first,...rest] =  value.split('');
+        const label = [first.toUpperCase(), ...rest].join('');
+
+        return { value, label }
+    }
 
     const handleNewTransaction = async(e) => {
         e.preventDefault();
