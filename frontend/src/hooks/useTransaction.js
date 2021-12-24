@@ -3,7 +3,7 @@ import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 import { TransactionContext } from "../context/transactionContext";
-import { newTransaction } from "../actions/transactions";
+import { newTransaction, updateTransaction } from "../actions/transactions";
 import { useForm } from "./useForm";
 import { isValidAmount } from "../helpers/isValidAmount";
 
@@ -14,7 +14,7 @@ const useTransaction = () => {
     const {state: { toModify } ,dispatch } = useContext(TransactionContext);
     const { formState:{ concept, amount }, handleInputChange, reset } = useForm({
         concept: toModify?.concept || '',
-        amount: toModify?.amount || ''
+        amount: toModify?.amount.toString() || ''
     });
 
     useEffect(() => {
@@ -60,20 +60,30 @@ const useTransaction = () => {
             amount: value,
             date: transactionDate,
             category: selectedOption.value,
-            type
+            type: toModify ? toModify.type : type
         }
 
-        const response = await fetch( 'http://localhost:4000/api/transactions',{
-            method: 'POST',
+        const url = toModify 
+                    ? `http://localhost:4000/api/transactions/${ toModify.transaction_id }`
+                    : 'http://localhost:4000/api/transactions'
+
+        const method = toModify ? 'PUT': 'POST'
+
+        const response = await fetch( url,{
+            method,
             headers:{
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify( transaction )
         } )
 
-        const newDbTransaction = await response.json();
+        const objResponseDb = await response.json();
 
-        dispatch(newTransaction( newDbTransaction ));        
+        if( toModify ){
+            dispatch( updateTransaction( objResponseDb ) )
+        }else {
+            dispatch(newTransaction( objResponseDb ));
+        }               
         
         setSelectedOption(null);
         setTransactionDate(new Date());
