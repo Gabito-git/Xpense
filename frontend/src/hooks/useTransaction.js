@@ -18,10 +18,7 @@ const useTransaction = () => {
     });
 
     useLayoutEffect(() => {
-        if( toModify ){           
-           console.log('reset', toModify.concept)
-           reset()
-       }       
+        toModify && reset()       
     }, [toModify])
 
     const handleNewTransaction = async(e) => {
