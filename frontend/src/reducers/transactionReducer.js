@@ -28,11 +28,11 @@ export const transactionReducer = (state = initState, action) => {
                 )[0]
             }       
 
-        case 'UPDATE_TRANSACTION':
+        case 'UPDATE_TRANSACTION':          
             return{
                 ...state,
                 transactions: state.transactions.map( tran => {
-                    return tran.transaction_id === action.payload.transaction__id
+                    return tran.transaction_id === action.payload.transaction_id
                             ? action.payload
                             : tran
                 } ),
