@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 
 import { useFormFields } from './useFormFields';
 
-const useFormControl = ( {initialValues, transactionValidation, funct, dispatch}) => {
+const useFormControl = ( {initialValues, validation, onSubmit, dispatch}) => {
     
     const { values, functions } = useFormFields( initialValues );    
-    const [errors, setErrors] = useState(null);
+    const [errors, setErrors] = useState({});
     const { handleInputChange, handleThirdPartyChange, reset } = functions;
 
     useEffect(() => {
@@ -15,9 +15,9 @@ const useFormControl = ( {initialValues, transactionValidation, funct, dispatch}
     const handleSubmit = (e) => {     
         e.preventDefault();  
         
-        setErrors( transactionValidation( values ) );
-        if(!errors){
-            funct( values, dispatch, reset );
+        setErrors( validation( values ) );
+        if(!errors){            
+            onSubmit( values, dispatch, reset );
             setErrors( null );
         }
     }
