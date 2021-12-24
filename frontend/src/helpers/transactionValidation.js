@@ -1,6 +1,7 @@
 const transactionValidation = ( values ) => {
 
     const { concept, amount, category } = values;
+    console.log(category)
 
     const errors = {}
     
@@ -8,7 +9,7 @@ const transactionValidation = ( values ) => {
         errors.concept = 'Required'
     }
 
-    if( isNaN(amount) || !amount.trim() ){
+    if( isNaN(amount) || !amount.toString().trim() ){
         errors.amount = 'Please provide a valid amount'
     }
 
