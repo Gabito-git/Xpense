@@ -1,3 +1,4 @@
+import { useContext, useEffect, useRef, useState } from "react";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -5,10 +6,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import  Button from '../../components/Button';
 import CustomSelect from "./CustomSelect";
 import useFormControl from "../../hooks/useFormControl";
-import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { TransactionContext } from "../../context/transactionContext";
 import transactionValidation from "../../helpers/transactionValidation";
-import { newTransaction } from "../../actions/transactions";
+import { newTransaction, updateTransaction } from "../../actions/transactions";
 
 export const options = [
     { value: 'salary', label: 'Salary' },
@@ -27,19 +27,30 @@ export const options = [
 //     category: null
 // }
 
-const funct = async(values, dispatch, reset) => {
-    const { concept, amount, date, category } = values;
+const funct = async(values, dispatch, reset ) => {
+    const { concept, amount, date, category, transaction_id } = values;
+    let url, method, type;    
     
+    if( transaction_id ){
+        url    = `http://localhost:4000/api/transactions/${ transaction_id }`
+        method = 'PUT'
+        type   = values.type
+    }else{
+        url    = 'http://localhost:4000/api/transactions';
+        method = 'POST'
+        type   = amount > 0 ? 'income' : 'expense'
+    }
+
     const transaction = {
         concept, 
         amount: Math.abs(amount),
         date,
         category: category.value,
-        type: amount > 0 ? 'income' : 'expense'
+        type
     }
 
-    const response = await fetch('http://localhost:4000/api/transactions', {
-        method: 'POST',
+    const response = await fetch(url, {
+        method,
         headers:{
             'Content-Type': 'application/json'
         },
@@ -48,13 +59,19 @@ const funct = async(values, dispatch, reset) => {
 
     const newTransactionDb = await response.json();
 
-    dispatch(newTransaction( newTransactionDb ) );
-    reset();
+    if( transaction_id ){
+        dispatch( updateTransaction( newTransactionDb ) )
+    }else{
+        dispatch(newTransaction( newTransactionDb ) );
+        reset();
+    }
+    
 }
 
 const TransactionForm = () => {
 
     const { state: { toModify }, dispatch } = useContext(TransactionContext);
+    const isMounted = useRef(false);
 
     const [initialValues, setInitialValues] = useState({
         concept: '',
@@ -63,20 +80,37 @@ const TransactionForm = () => {
         category: null
     })
 
-    const { 
-        values, 
-        errors, 
-        functions } = useFormControl( {initialValues, transactionValidation, funct, dispatch} )   
+    const { values, errors,  functions } = useFormControl( {
+        initialValues, 
+        validation: transactionValidation, 
+        onSubmit: funct, 
+        dispatch
+    } )   
         
     useEffect(() => {
         if( toModify ){
             setInitialValues({
                 ...toModify,
                 date: new Date(toModify.date),
-                category: options.filter( opt => opt.value === toModify.value)[0]
+                category: options.filter( opt => opt.value === toModify.category)[0]
             })            
         }
     }, [ toModify ])
+
+    useEffect(() => {
+        if( isMounted && !toModify ){
+            setInitialValues({
+                concept: '',
+                amount: '',
+                date: new Date(),
+                category: null
+            })
+        }
+    }, [isMounted, toModify])
+
+    useEffect(() => {
+        isMounted.current = true
+    }, [])
 
     return (
         <div className="transaction-form">
