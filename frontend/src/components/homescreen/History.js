@@ -25,8 +25,8 @@ const History = () => {
                     <p className="history__text">Search by category: </p>
                     <div className="history__select-field">
                         <CustomSelect 
-                            selectedOption={ selectedOption }
-                            setSelectedOption={ setSelectedOption }
+                            value={ selectedOption }
+                            onChange={ setSelectedOption }
                             options={ optionsToUse }                            
                         />
                     </div>                    
