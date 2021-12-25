@@ -10,7 +10,7 @@ const Transaction = ({style, concept, amount, date, category, transaction_id}) =
         <div className="transaction">
             <div className="transaction__left">
                 <h3 className="transaction__concept">{ concept }</h3>
-                <p className="transaction__date">{ date }</p>
+                <p className="transaction__date">{ new Date(date).toDateString() }</p>
             </div>
             <div className="transaction__right">
                 <p>{ category }</p>
