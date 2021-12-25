@@ -8,7 +8,7 @@ import CustomSelect from "./CustomSelect";
 import useFormControl from "../../hooks/useFormControl";
 import { TransactionContext } from "../../context/transactionContext";
 import transactionValidation from "../../helpers/transactionValidation";
-import { newTransaction, updateTransaction } from "../../actions/transactions";
+import { transactionExec } from "../../helpers/transactionExec";
 
 export const options = [
     { value: 'salary', label: 'Salary' },
@@ -19,54 +19,6 @@ export const options = [
     { value: 'family', label: 'Family' },
     { value: 'other', label: 'Other' },
 ];
-
-// const initialValues ={
-//     concept: '',
-//     amount: '',
-//     date: new Date(),
-//     category: null
-// }
-
-const funct = async(values, dispatch, reset ) => {
-    const { concept, amount, date, category, transaction_id } = values;
-    let url, method, type;    
-    
-    if( transaction_id ){
-        url    = `http://localhost:4000/api/transactions/${ transaction_id }`
-        method = 'PUT'
-        type   = values.type
-    }else{
-        url    = 'http://localhost:4000/api/transactions';
-        method = 'POST'
-        type   = amount > 0 ? 'income' : 'expense'
-    }
-
-    const transaction = {
-        concept, 
-        amount: Math.abs(amount),
-        date,
-        category: category.value,
-        type
-    }
-
-    const response = await fetch(url, {
-        method,
-        headers:{
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify( transaction )
-    })
-
-    const newTransactionDb = await response.json();
-
-    if( transaction_id ){
-        dispatch( updateTransaction( newTransactionDb ) )
-    }else{
-        dispatch(newTransaction( newTransactionDb ) );
-        reset();
-    }
-    
-}
 
 const TransactionForm = () => {
 
@@ -83,7 +35,7 @@ const TransactionForm = () => {
     const { values, errors,  functions } = useFormControl( {
         initialValues, 
         validation: transactionValidation, 
-        onSubmit: funct, 
+        onSubmit: transactionExec, 
         dispatch
     } )   
         
