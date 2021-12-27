@@ -11,3 +11,11 @@ CREATE TABLE IF NOT EXISTS transactions (
 	type VALID_TYPES,
     PRIMARY KEY (transaction_id)
 );
+
+CREATE TABLE IF NOT EXISTS users (
+    user_id uuid DEFAULT uuid_generate_v4 (),
+    username VARCHAR NOT NULL,
+    email VARCHAR NOT NULL,
+    password VARCHAR NOT NULL,
+    PRIMARY KEY (user_id)
+);
