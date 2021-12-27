@@ -11,7 +11,8 @@ class Server{
         this.app   = express();
         this.port  = process.env.PORT || 4000;
         this.paths = {
-            transactions: '/api/transactions'
+            transactions: '/api/transactions',
+            auth:         '/api/users'
         }
 
         this.middlewares();
@@ -28,6 +29,7 @@ class Server{
     }
 
     routes(){
+        this.app.use( this.paths.auth, require('../routes/auth') );
         this.app.use( this.paths.transactions, require('../routes/transactions') );
     }
 
