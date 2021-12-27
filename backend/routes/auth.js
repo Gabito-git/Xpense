@@ -14,6 +14,10 @@ router.post('/signup',[
     validateFields
  ], signUp)
 
-router.post('/signin', signIn);
+router.post('/signin',[
+    check('email', 'Please provide a valid e-mail').isEmail(),
+    check('password', 'Password field is mandatory').not().isEmpty(),
+    validateFields
+], signIn);
 
 module.exports = router;
