@@ -1,6 +1,7 @@
 const express = require('express');
 const cors    = require('cors');
 require('dotenv').config();
+const cookieSession = require('cookie-session');
 
 require('express-async-errors');
 const errorHandler = require('../middlewares/error-handler');
@@ -26,6 +27,10 @@ class Server{
     middlewares(){
         this.app.use( express.json() );
         this.app.use(cors());
+        this.app.use(cookieSession({
+            signed: false,
+            secure: false
+        }))
     }
 
     routes(){
