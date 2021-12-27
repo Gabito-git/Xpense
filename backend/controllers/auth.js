@@ -57,6 +57,48 @@ const signUp = async( req, res ) => {
     }
 }
 
+const signIn = async(req, res) => {
+    const { email, password } = req.body;
+    let response
+
+    try {
+        response = await pool.query(
+            "SELECT username, user_id, password FROM users WHERE email=$1",
+            [email]
+        )
+    } catch (error) {
+        console.log(error)
+    }
+
+    if(response.rowCount === 0){
+        throw new BadRequestError('Invalid credentials');
+    }
+
+    const user = response.rows[0];
+    const validPassword = bcrypt.compareSync( password, user.password );
+
+    if(!validPassword){
+        throw new BadRequestError('Invalid credentials');
+    }
+
+    
+    const userJwt = jwt.sign({
+            id: user.user_id,
+            username: user.username
+        }, process.env.JWT_KEY,{
+            expiresIn: '2h'
+        }        
+    )    
+    // Store on Session object
+    req.session.jwt = { userJwt }               
+
+    res.send({
+        username: user.username,
+        user_id: user.user_id
+    })
+}
+
 module.exports = {
-    signUp
+    signUp,
+    signIn
 }
