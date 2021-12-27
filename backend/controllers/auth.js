@@ -41,7 +41,7 @@ const signUp = async( req, res ) => {
             }        
         )    
         // Store on Session object
-        req.session.jwt = { userJwt }               
+        req.session.jwt =  userJwt               
         
         res.status(201).json( user )
         
@@ -90,7 +90,7 @@ const signIn = async(req, res) => {
         }        
     )    
     // Store on Session object
-    req.session.jwt = { userJwt }               
+    req.session.jwt = userJwt                
 
     res.status(200).json({
         username: user.username,
