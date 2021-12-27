@@ -35,8 +35,7 @@ const TransactionForm = () => {
     const { values, errors,  functions } = useFormControl( {
         initialValues, 
         validation: transactionValidation, 
-        onSubmit: transactionExec, 
-        dispatch
+        onSubmit: ( values, reset ) => transactionExec( values, dispatch, reset ),        
     } )   
         
     useEffect(() => {

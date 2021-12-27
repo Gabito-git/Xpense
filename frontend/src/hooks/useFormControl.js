@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useFormFields } from './useFormFields';
 
-const useFormControl = ( {initialValues, validation, onSubmit, dispatch}) => {
+const useFormControl = ( {initialValues, validation, onSubmit}) => {
     
     const { values, functions } = useFormFields( initialValues );    
     const [errors, setErrors] = useState({});
@@ -19,7 +19,7 @@ const useFormControl = ( {initialValues, validation, onSubmit, dispatch}) => {
         setErrors( errors );
   
         if(Object.keys( errors ).length === 0){           
-            onSubmit( values, dispatch, reset );
+            onSubmit( values, reset );
             setErrors( {} );
         }
     }
