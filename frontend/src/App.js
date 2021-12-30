@@ -1,10 +1,10 @@
-import { TransactionContextProvider } from "./context/transactionContext"
-import HomeScreen from "./screens/HomeScreen"
+import { TransactionContextProvider } from "./context/transactionContext";
+import AppRouter from "./router/AppRouter";
 
 const App = () => {
   return (    
       <TransactionContextProvider>
-        <HomeScreen />
+        <AppRouter />
       </TransactionContextProvider>    
   )
 }
