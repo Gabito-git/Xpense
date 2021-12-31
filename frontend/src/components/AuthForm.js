@@ -4,11 +4,13 @@ const AuthForm = ({className, children, buttonText}) => {
     return (
         <form className={ `${ className }__form` }>
             { children }
-            <Button 
-              text={ buttonText }
-              type="submit"
-              className={`${className}__button`}
-            />
+            <div className={`${ className }__button-div`}>
+                <Button 
+                text={ buttonText }
+                type="submit"
+                className={`${className}__button`}
+                />
+            </div>
     
         </form>
     )
