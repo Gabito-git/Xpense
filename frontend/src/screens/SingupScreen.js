@@ -1,3 +1,5 @@
+import AuthForm from "../components/AuthForm"
+import FormGroup from "../components/FormGroup"
 import Navbar from "../components/Navbar"
 
 const SingupScreen = () => {
@@ -7,6 +9,28 @@ const SingupScreen = () => {
                 buttonText="Login"
                 className="auth"
             />
+            <main className="auth__main">
+                <h1>Enjoy the automated online expense tracker</h1>
+                <AuthForm 
+                    className="auth" 
+                    buttonText="Sign up"
+                >
+                    <FormGroup 
+                        className="auth"
+                        label="Username"
+                    />
+                    <FormGroup 
+                        className="auth"
+                        label="Email"
+                        type="email"
+                    />
+                    <FormGroup 
+                        className="auth"
+                        label="Password"
+                        type="password"
+                    />
+                </AuthForm>
+            </main>
         </div>
     )
 }
