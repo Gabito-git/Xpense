@@ -11,14 +11,16 @@ const WelcomeScreen = () => {
                 className="welcome"
             />
             <main className="welcome__main"> 
-                <h1 className="welcome__title">XPENSE</h1>
-                <p className="welcome__text">Your personal expense manager designed to help you keep track of your day-to-day expenses and incomes</p>
-                <Button 
-                    text="Get started"
-                    className="welcome__button"
-                />
-                <div className="welcome__bank-image">
-                    <img src={ bank_image } alt="bank" />
+                <div className="welcome__top">
+                    <h1 className="welcome__title">XPENSE</h1>
+                    <p className="welcome__text">Your personal expense manager designed to help you keep track of your day-to-day expenses and incomes</p>
+                    <Button 
+                        text="Get started"
+                        className="welcome__button"
+                    />
+                    <div className="welcome__bank-image">
+                        <img src={ bank_image } alt="bank" />
+                    </div>
                 </div>
 
                 <div className="welcome__bottom">
