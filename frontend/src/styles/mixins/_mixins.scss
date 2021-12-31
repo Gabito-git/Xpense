@@ -17,3 +17,21 @@
         }
     }
 }
+
+@mixin general_navbar_button {
+    border: 2px solid lighten($color-primary, $amount: 10);
+    font-family: inherit;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0.7rem 1.7rem;
+    transition: all .3s;
+
+    @media all and (min-width: 768px){
+        padding: 1rem 1.7rem;
+    }
+
+    &:hover{
+        background-color: $color-secondary;
+        color: white;
+    }
+}
