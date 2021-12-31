@@ -10,7 +10,7 @@ const SingupScreen = () => {
                 className="auth"
             />
             <main className="auth__main">
-                <h1>Enjoy the automated online expense tracker</h1>
+                <h1 className="auth__title">Enjoy the automated online expense tracker</h1>
                 <AuthForm 
                     className="auth" 
                     buttonText="Sign up"
