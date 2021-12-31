@@ -1,8 +1,13 @@
+import Navbar from "../components/Navbar"
+
 const SingupScreen = () => {
     return (
-        <h1>
-            SignupScreen
-        </h1>
+        <div className="auth">
+            <Navbar 
+                buttonText="Login"
+                className="auth"
+            />
+        </div>
     )
 }
 
