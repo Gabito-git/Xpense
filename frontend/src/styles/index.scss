@@ -1,5 +1,6 @@
 @import './base/base';
 @import './base/settings';
+@import './base/mixins';
 
 @import './components/button';
 @import './components/homescreen/balance';
@@ -7,8 +8,6 @@
 @import './components/homescreen/modify';
 @import './components/homescreen/transaction-form';
 @import './components/homescreen/transaction';
-
-@import './mixins/mixins';
 
 @import './screens/homescreen';
 @import './screens/welcome';
