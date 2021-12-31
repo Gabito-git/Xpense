@@ -1,8 +1,13 @@
+import Navbar from "../components/Navbar"
+
 const WelcomeScreen = () => {
     return (
-        <h1>
-            Welcome screen
-        </h1>
+        <div className="welcome">
+            <Navbar 
+                buttonText="Login"
+                className="welcome"
+            />
+        </div>
     )
 }
 
