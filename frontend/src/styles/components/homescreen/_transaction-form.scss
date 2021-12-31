@@ -48,18 +48,7 @@
     }
 
     &__button{
-        background-color: $color-primary;
-        border: none;
-        border-radius: 3px;
-        color: white;
-        font-family: inherit;
-        margin-top: 2rem;
-        padding: 1rem 1.5rem;
-        transition: all;
-
-        &:hover{
-            background-color: $color-secondary;
-        }
+        @include filled-button;
     }
 
 }
