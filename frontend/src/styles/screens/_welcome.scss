@@ -17,13 +17,21 @@
         flex: 1;
         width: 100%;
 
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
     }
 
     &__top{
         text-align: center;
+        @media all and (min-width: 1023px){
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    &__info{
+        @media all and (min-width: 1023px){
+            flex: 35%;
+        }
     }
 
     &__title{
@@ -32,6 +40,10 @@
         padding-top: 7rem;
         @media all and (min-width: 768px){
             font-size: 9rem;
+        }
+        @media all and (min-width: 1023px){
+            font-size: 11rem;
+            padding-top: 0;
         }
     }
 
@@ -56,13 +68,25 @@
 
     &__bank-image{
         display: none;
+        @media all and (min-width: 1023px){
+            display: block;
+            flex: 55%;
+            height: 55rem;
+        }
+
+        img{
+            max-height: 100%;
+        }
     }
 
     &__bottom{
         width: 100%;
-        flex: 12%;
-        background-color: lightgreen;
-        clip-path: polygon( 0 100%, 0 75%, 100% 25% ,100% 100%);
+        flex: 10%;
+        background-color: $color-tertiary;
+        clip-path: polygon( 0 100%, 0 75%, 100% 30% ,100% 100%);
+        @media all and (min-width: 1023px){
+            clip-path: polygon( 0 100%, 0 75%, 100% 0% ,100% 100%);
+        }
     }
 
 }
