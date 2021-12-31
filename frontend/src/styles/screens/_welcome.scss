@@ -15,7 +15,7 @@
 
     &__main{
         flex: 1;
-        padding: 2rem 2rem 0 2rem;
+        // padding: 2rem 2rem 0 2rem;
         width: 100%;
 
         display: flex;
@@ -46,15 +46,11 @@
         display: none;
     }
 
-    &__path{
-        width: 110%;
-
-        height: 17rem;
-
-        path{
-            height: 100%;
-            width: 100rem;
-        }
+    &__bottom{
+        width: 100%;
+        flex: 12%;
+        background-color: lightgreen;
+        clip-path: polygon( 0 100%, 0 75%, 100% 25% ,100% 100%);
     }
 
 }
