@@ -20,7 +20,7 @@ const WelcomeScreen = () => {
                             className="welcome__button"
                         />
                     </div>
-                    <div className="welcome__bank-image">
+                    <div className="welcome__bank-image animate__animated animate__backInUp" >
                         <img src={ bank_image } alt="bank" />
                     </div>
                 </div>
