@@ -30,6 +30,7 @@ const SingupScreen = () => {
                         type="password"
                     />
                 </AuthForm>
+                <div className="auth__bottom"></div>
             </main>
         </div>
     )
