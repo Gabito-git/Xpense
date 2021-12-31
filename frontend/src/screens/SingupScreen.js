@@ -1,5 +1,5 @@
-import AuthForm from "../components/AuthForm"
-import FormGroup from "../components/FormGroup"
+import AuthForm from "../components/authscreen/AuthForm"
+import FormGroup from "../components/authscreen/FormGroup"
 import Navbar from "../components/Navbar"
 
 const SingupScreen = () => {
