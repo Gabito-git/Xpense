@@ -6,4 +6,96 @@
     &__nav-button{
         @include general_navbar-button
     }
+
+    &__main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__title{
+        color: lighten(black, $amount: 27);
+        font-size: 2.5rem;
+        text-align: center;
+        width: 70%;
+
+        @media all and (min-width: 640px){
+            font-size: 3rem;
+            margin: 2rem 0;
+        }
+
+        @media all and (min-width: 1023px){
+            font-size: 3.5rem;
+        }
+    }
+
+    &__form{
+        box-shadow: 9px 9px 16px rgb(163 177 198 / 60%),
+              -9px -9px 16px rgb(255 255 255 / 50%);
+        margin: 2rem 0;
+        width: 30rem;   
+        padding: 1.5rem 2.5rem;
+
+        @media all and (min-width: 767px){
+            width: 35rem;
+        }
+    }
+
+    &__form-group{
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+    }
+
+    &__input-div{
+        border: 1px solid lighten($color-primary, $amount: 20);
+        border-radius: 3px;
+    }
+
+    &__input{
+        background-color: transparent;
+        border: none;
+        padding: 0.7rem;      
+        width: 100%;  
+
+        &:focus{
+            outline: 2px solid lighten($color-primary, $amount: 10);;
+            border-radius: 3px;
+        }
+    }
+
+    &__button-div{
+        text-align: center;
+    }
+
+    &__button{
+        @include filled-button;
+    }
+
+    &__bottom{
+        background-color: $color-tertiary;
+        clip-path: polygon( 0 100%, 0 75%, 100% 30% ,100% 100%);
+        height: 18rem;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        @media all and (min-width: 1023px){
+            clip-path: polygon( 0 100%, 0 75%, 100% 0% ,100% 100%);
+        }
+    }
+
+    &__money{
+        display: none;
+        @media all and (min-width: 1023px){
+            display: block;
+            width: 20rem;
+            position: absolute;
+            top: 35%;
+            left: 10%;
+
+            img{
+                max-width: 100%;
+            }
+        }
+    }
 }
