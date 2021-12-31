@@ -1,0 +1,19 @@
+@mixin general_navbar{
+    align-items: center;
+    display: flex;
+    background-color: #EAEBF3;
+    justify-content: space-between;
+    
+    margin-bottom: 1.5rem;
+    padding: 1rem 2.5rem;
+    position: sticky;
+    top: 0;
+    width: 100%; 
+
+    h1{
+        font-size: 3.2rem;
+        @media all and (min-width: 768px){
+            font-size: 3.8rem;
+        }
+    }
+}

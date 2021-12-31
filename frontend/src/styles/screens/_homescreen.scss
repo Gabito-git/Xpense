@@ -1,25 +1,8 @@
 .homescreen{
-    
 
     &__navbar{
-        align-items: center;
-        display: flex;
-        background-color: #EAEBF3;
-        justify-content: space-between;
-
+        @include general_navbar;
         box-shadow: 0px 2px 4px 0 rgba(6, 70, 53, 0.25);
-        margin-bottom: 1.5rem;
-        padding: 1rem 2.5rem;
-        position: sticky;
-        top: 0;
-        width: 100%; 
-
-        h1{
-            font-size: 3.2rem;
-            @media all and (min-width: 768px){
-                font-size: 3.8rem;
-            }
-        }
     }
 
     &__nav-button{
