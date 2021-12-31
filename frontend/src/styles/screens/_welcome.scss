@@ -1,0 +1,11 @@
+.welcome{
+
+    &__navbar{
+        @include general_navbar;
+    }
+
+    &__nav-button{
+        @include general_navbar-button
+    }
+
+}
