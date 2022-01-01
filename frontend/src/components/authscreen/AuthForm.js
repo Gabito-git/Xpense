@@ -10,7 +10,7 @@ const AuthForm = ({className, children, buttonText, functions, values}) => {
         <Provider value={{ functions, values }}>
             <form 
                 className={ `${ className }__form` }
-                onSubmit={ functions.onSubmit }
+                onSubmit={ functions.handleSubmit }
             >
                 { children }
                 <div className={`${ className }__button-div`}>
