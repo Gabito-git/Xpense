@@ -1,4 +1,5 @@
 import { useHistory } from 'react-router-dom'
+import { useContext } from 'react'
 
 import AuthForm from "../components/authscreen/AuthForm"
 import FormGroup from "../components/authscreen/FormGroup"
@@ -6,6 +7,8 @@ import useFormControl from '../hooks/useFormControl'
 import Navbar from "../components/Navbar"
 import money from '../assets/money.png'
 import authFormValidation from '../helpers/authFormValidation'
+import signupExec from '../helpers/signupExec'
+import { AuthContext } from '../context/authContext'
 
 const initialValues={
     username: '',
@@ -17,9 +20,11 @@ const initialValues={
 const SingupScreen = () => {
 
     const history = useHistory();
+    const { dispatch } = useContext(AuthContext);
     const { values, errors, functions } = useFormControl({
         initialValues, 
-        validation: authFormValidation
+        validation: authFormValidation,
+        onSubmit: ( values, reset ) => signupExec( values, reset, dispatch )
     });
 
     return (
