@@ -7,7 +7,7 @@ const { Provider } = FormContext;
 const AuthForm = ({className, children, buttonText, functions, values}) => {
 
     return (
-        <Provider values={{ functions, values }}>
+        <Provider value={{ functions, values }}>
             <form 
                 className={ `${ className }__form` }
                 onSubmit={ functions.onSubmit }
