@@ -15,6 +15,7 @@ const SingupScreen = () => {
                 buttonText="Login"
                 className="auth"
                 onTitleClick = { () => history.push('/auth') }
+                onButtonClick= { () => history.push('/auth/signin')}
             />
             <main className="auth__main">
                 <h1 className="auth__title">Enjoy the automated online expense tracker</h1>

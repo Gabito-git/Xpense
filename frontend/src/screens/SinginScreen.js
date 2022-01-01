@@ -15,6 +15,7 @@ const SinginScreen = () => {
                 buttonText="Sign up"
                 className="auth"
                 onTitleClick = { () => history.push('/auth') }
+                onButtonClick={ () => history.push('/auth/signup')}
             />
             <main className="auth__main">
                 <h1 className="auth__title">Experience a fresh way to manage money</h1>
