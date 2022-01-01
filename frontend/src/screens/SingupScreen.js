@@ -9,7 +9,8 @@ import money from '../assets/money.png'
 const initialValues={
     username: '',
     email: '',
-    password: ''
+    password: '',
+    password2: ''
 }
 
 const SingupScreen = () => {
@@ -51,6 +52,13 @@ const SingupScreen = () => {
                         label="Password"
                         type="password"
                         name="password"
+                    />
+
+                    <FormGroup 
+                        className="auth"
+                        label="Confirm password"
+                        type="password"
+                        name="password2"
                     />
                 </AuthForm>
                 <div className="auth__bottom"></div>
