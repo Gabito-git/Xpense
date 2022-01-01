@@ -1,18 +1,29 @@
+import { createContext } from "react"
 import Button from "../Button"
 
-const AuthForm = ({className, children, buttonText}) => {
+export const FormContext = createContext();
+const { Provider } = FormContext;
+
+const AuthForm = ({className, children, buttonText, functions, values}) => {
+
     return (
-        <form className={ `${ className }__form` }>
-            { children }
-            <div className={`${ className }__button-div`}>
-                <Button 
-                text={ buttonText }
-                type="submit"
-                className={`${className}__button`}
-                />
-            </div>
-    
-        </form>
+        <Provider values={{ functions, values }}>
+            <form 
+                className={ `${ className }__form` }
+                onSubmit={ functions.onSubmit }
+            >
+                { children }
+                <div className={`${ className }__button-div`}>
+                    <Button 
+                    text={ buttonText }
+                    type="submit"
+                    className={`${className}__button`}
+                    />
+                </div>
+            </form>   
+        </Provider>
+
+        
     )
 }
 
