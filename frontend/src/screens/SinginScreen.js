@@ -1,14 +1,20 @@
+import { useHistory } from 'react-router-dom'
+
 import AuthForm from "../components/authscreen/AuthForm"
 import FormGroup from "../components/authscreen/FormGroup"
 import Navbar from "../components/Navbar"
 import money from '../assets/money.png'
 
 const SinginScreen = () => {
+
+    const history = useHistory()
+
     return (
         <div className="auth">
             <Navbar 
                 buttonText="Sign up"
                 className="auth"
+                onTitleClick = { () => history.push('/auth') }
             />
             <main className="auth__main">
                 <h1 className="auth__title">Experience a fresh way to manage money</h1>
