@@ -2,8 +2,12 @@ import Button from "../components/Button"
 import Navbar from "../components/Navbar"
 
 import bank_image from '../assets/bank-image.png'
+import { useHistory } from "react-router-dom"
 
 const WelcomeScreen = () => {
+
+    const history = useHistory()
+
     return (
         <div className="welcome">
             <Navbar 
@@ -18,6 +22,7 @@ const WelcomeScreen = () => {
                         <Button 
                             text="Get started"
                             className="welcome__button"
+                            onClick={ () => history.push('/auth/signup') }
                         />
                     </div>
                     <div className="welcome__bank-image animate__animated animate__backInUp" >
