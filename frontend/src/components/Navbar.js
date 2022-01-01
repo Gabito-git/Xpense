@@ -1,6 +1,6 @@
 import Button from "./Button"
 
-const Navbar = ({ className, buttonText, onTitleClick }) => {
+const Navbar = ({ className, buttonText, onTitleClick, onButtonClick }) => {
     return (
         <nav className={`${ className }__navbar`}>
             <h1 
@@ -10,6 +10,7 @@ const Navbar = ({ className, buttonText, onTitleClick }) => {
             <Button
                 text={ buttonText } 
                 className={`${ className }__nav-button`}
+                onClick={ onButtonClick }
             />            
         </nav>
     )
