@@ -11,7 +11,7 @@ import fetchHelper from "../helpers/fetchHelper"
 
 const HomeScreen = () => {
 
-    const { dispatch } = useContext(AuthContext)
+    const { state:{ currentUser }, dispatch } = useContext(AuthContext)
 
     const handleSignOut = async() => {
         await fetchHelper({
@@ -28,6 +28,7 @@ const HomeScreen = () => {
                 className="homescreen"
                 buttonText="Logout"
                 onButtonClick={ handleSignOut }
+                username={ currentUser.username.toUpperCase() }
             />
 
             <main className="homescreen__main">

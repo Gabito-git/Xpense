@@ -6,7 +6,19 @@
     }
 
     &__nav-button{
-        @include general_navbar_button
+        @include general_navbar_button;
+        position: relative
+    }
+
+    &__nav-right{
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    &__nav-username{
+        color: $color-tertiary;
+        font-size: 1.5rem;
     }
 
     &__main{
