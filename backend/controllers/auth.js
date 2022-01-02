@@ -34,7 +34,7 @@ const signUp = async( req, res ) => {
         user = user.rows[0];
 
         const userJwt = jwt.sign({
-                id: user.user_id,
+                user_id: user.user_id,
                 username: user.username
             }, process.env.JWT_KEY,{
                 expiresIn: '2h'
@@ -83,7 +83,7 @@ const signIn = async(req, res) => {
 
     
     const userJwt = jwt.sign({
-            id: user.user_id,
+            user_id: user.user_id,
             username: user.username
         }, process.env.JWT_KEY,{
             expiresIn: '2h'
