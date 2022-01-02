@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 import { TransactionContext } from "../context/transactionContext";
+import fetchHelper from "../helpers/fetchHelper";
 
 const useSearch = ( optionsToUse ) => {
     const { state:{ transactions }} = useContext( TransactionContext );
@@ -22,15 +23,11 @@ const useSearch = ( optionsToUse ) => {
             }
 
             try {
-                const response = await fetch(
-                    `http://localhost:4000/api/transactions/${selectedOption.value}/category`, {
-                        method: 'GET',
-                        headers:{
-                            'Content-Type': 'application/json'
-                        },
-                    }
-                )
-    
+                const response = await fetchHelper({
+                    url: `transactions/${selectedOption.value}/category`,
+                    method: 'get'
+                })
+                    
                 const filteredResult = await response.json();
 
                 if(filteredResult.errors){
