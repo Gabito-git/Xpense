@@ -13,6 +13,7 @@ const WelcomeScreen = () => {
             <Navbar 
                 buttonText="Login"
                 className="welcome"
+                onButtonClick= { () => history.push('/auth/signin')}
             />
             <main className="welcome__main"> 
                 <div className="welcome__top">
