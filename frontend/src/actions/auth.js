@@ -6,3 +6,7 @@ export const setCurrentUser = ( currentUser ) =>({
 export const finishChecking = () => ({
     type: 'FINISH_CHECKING'
 })
+
+export const signOutAuth = () => ({
+    type: 'SIGN_OUT_AUTH'
+})

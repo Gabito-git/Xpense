@@ -17,6 +17,13 @@ export const authReducer = (state = initialState, action) => {
                 ...state,
                 checking: false
             }
+
+        case 'SIGN_OUT_AUTH':
+            return{
+                ...state,
+                checking: false,
+                currentUser: null
+            }
     
         default:
             return state;
