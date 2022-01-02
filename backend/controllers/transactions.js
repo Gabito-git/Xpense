@@ -2,12 +2,13 @@ const { pool }   = require('../db/config');
 const BadRequestError = require('../errors/bad-request-err');
 
 const newTransaction = async(req, res) => {
+    const { user_id } = req.currentUser;
     const { concept, amount, date, category, type} = req.body;
 
     try {
         const newTransaction = await pool.query(
-            "INSERT INTO transactions (concept, amount, date, category, type) " +
-            "VALUES($1, $2, $3, $4, $5) RETURNING *", [concept, amount, date, category, type]
+            "INSERT INTO transactions (user_id, concept, amount, date, category, type) " +
+            "VALUES($1, $2, $3, $4, $5, $6) RETURNING *", [user_id, concept, amount, date, category, type]
         )
         res.status(201).json({...newTransaction.rows[0] });
     } catch (error) {

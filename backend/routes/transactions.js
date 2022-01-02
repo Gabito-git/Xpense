@@ -8,6 +8,8 @@ const {
     deleteTransaction,
     searchByCategory} = require('../controllers/transactions');
 const { allowedData }   = require('../helpers/db-validators');
+const checkTransactionValidation = require('../middlewares/check-transaction-validation');
+const currentUser = require('../middlewares/current-user');
 const validateFields     = require('../middlewares/validateFields');
 
 const router = Router();
@@ -15,6 +17,8 @@ const router = Router();
 const categories = [
     'salary', 'interests', 'food', 'transportation', 'gift', 'family', 'other'
 ]
+
+router.use([ currentUser, checkTransactionValidation ]);
 
 router.post('/',[
     check('concept', 'Concept field is mandatory').not().isEmpty(),
