@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 import { newTransaction, updateTransaction } from "../actions/transactions";
 import fetchHelper from "./fetchHelper";
 
@@ -23,18 +25,29 @@ export const transactionExec = async(values, dispatch, reset ) => {
         type
     }
 
-    const response = await fetchHelper({
-        url,
-        method,
-        body: transaction
-    })
-
-    const newTransactionDb = await response.json();
-
-    if( transaction_id ){
-        dispatch( updateTransaction( newTransactionDb ) )
-    }else{
-        dispatch(newTransaction( newTransactionDb ) );
-        reset();
-    }    
+    try {
+        const data = await fetchHelper({
+            url,
+            method,
+            body: transaction
+        })
+    
+        const response = await data.json();
+    
+        if(response.errors){
+            return Swal.fire("Oops..", response.errors[0].message, "error");
+        }
+    
+        const newTransactionDb = response;
+    
+        if( transaction_id ){
+            dispatch( updateTransaction( newTransactionDb ) )
+        }else{
+            dispatch(newTransaction( newTransactionDb ) );
+            reset();
+        }  
+        
+    } catch (error) {
+        Swal.fire("Oops...", error.message, "error")
+    }   
 }
