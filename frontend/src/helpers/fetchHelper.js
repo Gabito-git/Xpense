@@ -1,6 +1,16 @@
 const fetchHelper = ({ url, method, body={} }) => {
     const urlString = `http://localhost:4000/api/${ url }`;
 
+    if(method === 'get'){
+        return fetch( urlString, {
+            method,
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
+        } )
+    }
+
     return fetch( urlString, {
         method,
         headers:{
