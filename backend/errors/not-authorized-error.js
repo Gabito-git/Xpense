@@ -1,17 +1,16 @@
 
 class NotAuthorizedError extends Error{    
 
-    constructor( message ){
+    constructor( ){
         super( 'Not Authorized' );
-        this.message  = message;
-        this.statusCode = 404;
+        this.statusCode = 401;
 
         Object.setPrototypeOf(this, NotAuthorizedError.prototype);
     }
 
     serializeErrors(){
         return [
-            { message: this.message}
+            { message: 'Not authorized'}
         ]
     }
 }
