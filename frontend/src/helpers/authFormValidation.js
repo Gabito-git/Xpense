@@ -15,7 +15,7 @@ const authFormValidation = ( values ) => {
         errors.password = 'Please provide a password' 
     }
 
-    if( values.password2?.trim() !== values.password.trim()){
+    if( values.password2 && (values.password2.trim() !== values.password.trim())){
         errors.password2 = 'Passwords must match'
     }
 
