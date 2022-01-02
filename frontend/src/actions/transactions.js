@@ -17,3 +17,7 @@ export const updateTransaction = ( transaction ) => ({
     type: 'UPDATE_TRANSACTION',
     payload: transaction
 })
+
+export const signOutTransactions = () => ({
+    type: 'SIGN_OUT_TRANSACTIONS'
+})

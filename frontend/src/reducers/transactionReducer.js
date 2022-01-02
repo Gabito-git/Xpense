@@ -38,6 +38,13 @@ export const transactionReducer = (state = initState, action) => {
                 } ),
                 toModify: null
             }
+
+        case 'SIGN_OUT_TRANSACTIONS':
+            return{
+                ...state,
+                transactions: [],
+                toModify: null
+            }
     
         default:
             return state;
