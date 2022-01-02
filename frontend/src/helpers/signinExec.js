@@ -13,20 +13,25 @@ const signinExec = async( values, reset, dispatch ) => {
         password
     }
 
-    const response = await fetchHelper({
-        url: 'users/signin',
-        method: 'post',
-        body: user
-    })
-
-    const currentUser = await response.json();
-    if(currentUser.errors){
-        return Swal.fire(
-            'Oops...', currentUser.errors[0].message, 'error'
-        )
+    try {
+        const response = await fetchHelper({
+            url: 'users/signin',
+            method: 'post',
+            body: user
+        })
+    
+        const currentUser = await response.json();
+        if(currentUser.errors){
+            return Swal.fire(
+                'Oops...', currentUser.errors[0].message, 'error'
+            )
+        }
+    
+        dispatch(setCurrentUser( currentUser ))
+        
+    } catch (error) {
+        Swal.fire("Oops...", error.message, "error")
     }
-
-    dispatch(setCurrentUser( currentUser ))
 
 }
 
