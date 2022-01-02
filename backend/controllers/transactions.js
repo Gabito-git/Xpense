@@ -114,14 +114,16 @@ const deleteTransaction = async(req, res) => {
 }
 
 const searchByCategory = async(req, res) => {
+    const { user_id } = req.currentUser;
     const { category } = req.params;
     let transactions;
     
     try {      
         transactions = await pool.query(
-            "SELECT * FROM transactions WHERE category=$1", [ category ]
+            "SELECT * FROM transactions WHERE category=$1 AND user_id = $2", 
+            [ category, user_id]
         )              
-
+ 
         res.status(200).json({ transactions: transactions.rows })
 
     } catch (error) {
