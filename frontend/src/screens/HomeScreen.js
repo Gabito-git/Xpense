@@ -1,5 +1,4 @@
 import { useContext } from "react"
-import { setCurrentUser } from "../actions/auth"
 
 import Button from "../components/Button"
 import Balance from "../components/homescreen/Balance"
@@ -8,10 +7,14 @@ import TransactionForm from "../components/homescreen/TransactionForm"
 import Navbar from "../components/Navbar"
 import { AuthContext } from "../context/authContext"
 import fetchHelper from "../helpers/fetchHelper"
+import { signOutAuth } from '../actions/auth'
+import { signOutTransactions } from "../actions/transactions"
+import { TransactionContext } from "../context/transactionContext"
 
 const HomeScreen = () => {
 
-    const { state:{ currentUser }, dispatch } = useContext(AuthContext)
+    const { state:{ currentUser }, dispatch: authDispatch} = useContext(AuthContext)
+    const { dispatch: transactionDispatch  } = useContext( TransactionContext )
 
     const handleSignOut = async() => {
         await fetchHelper({
@@ -19,7 +22,8 @@ const HomeScreen = () => {
             method: 'get'
         })
 
-        dispatch( setCurrentUser( null ) );
+        transactionDispatch( signOutTransactions());
+        authDispatch( signOutAuth() );
     }
 
     return (
