@@ -4,10 +4,19 @@ import AuthForm from "../components/authscreen/AuthForm"
 import FormGroup from "../components/authscreen/FormGroup"
 import Navbar from "../components/Navbar"
 import money from '../assets/money.png'
+import useFormControl from '../hooks/useFormControl'
+
+const initialValues = {
+    email: '',
+    password: ''
+}
 
 const SinginScreen = () => {
 
-    const history = useHistory()
+    const history = useHistory();
+    const { values, errors, functions } = useFormControl({
+        initialValues
+    })
 
     return (
         <div className="auth">
@@ -22,16 +31,20 @@ const SinginScreen = () => {
                 <AuthForm
                     className="auth" 
                     buttonText="Sign in"
+                    functions={ functions }
+                    values={ values }
                 >
                     <FormGroup
                         className="auth"
                         label="Email"
                         type="email"
+                        name="email"
                     />
                     <FormGroup 
                         className="auth"
                         label="Password"
                         type="password"
+                        name="password"
                     />
                 </AuthForm>
                 <div className="auth__bottom"></div>
