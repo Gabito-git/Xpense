@@ -6,7 +6,8 @@ const fetchHelper = ({ url, method, body={} }) => {
         headers:{
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify( body )
+        body: JSON.stringify( body ),
+        credentials: 'include'
     } )
 }
 
