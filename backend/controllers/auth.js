@@ -98,7 +98,13 @@ const signIn = async(req, res) => {
     })
 }
 
+const signOut = (req, res) => {
+    req.session = null;
+    res.status(200).json({});
+}
+
 module.exports = {
     signUp,
-    signIn
+    signIn,
+    signOut
 }

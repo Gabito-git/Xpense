@@ -2,7 +2,7 @@
 const { Router } = require('express');
 const { check }  = require('express-validator'); 
 
-const { signUp, signIn } = require('../controllers/auth');
+const { signUp, signIn, signOut } = require('../controllers/auth');
 const currentUser = require('../middlewares/current-user');
 const validateFields = require('../middlewares/validateFields');
 
@@ -20,6 +20,8 @@ router.post('/signin',[
     check('password', 'Password field is mandatory').not().isEmpty(),
     validateFields
 ], signIn);
+
+router.get('/signout', signOut);
 
 router.get('/currentuser', currentUser, (req, res) => {
     res.status(200).json({ currentUser: req.currentUser || null  })
