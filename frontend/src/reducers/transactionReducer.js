@@ -39,6 +39,12 @@ export const transactionReducer = (state = initState, action) => {
                 toModify: null
             }
 
+        case 'SET_TRANSACTIONS':
+            return{
+                ...state,
+                transactions: action.payload
+            }
+
         case 'SIGN_OUT_TRANSACTIONS':
             return{
                 ...state,

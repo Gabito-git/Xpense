@@ -21,3 +21,8 @@ export const updateTransaction = ( transaction ) => ({
 export const signOutTransactions = () => ({
     type: 'SIGN_OUT_TRANSACTIONS'
 })
+
+export const setTransactions = ( transactions ) => ({
+    type: 'SET_TRANSACTIONS',
+    payload: transactions
+})
