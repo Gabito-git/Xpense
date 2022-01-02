@@ -1,5 +1,6 @@
 
 export const initialState = {
+    checking: true,
     currentUser: null
 }
 
@@ -9,6 +10,12 @@ export const authReducer = (state = initialState, action) => {
             return{
                 ...state,
                 currentUser: action.payload
+            }
+
+        case 'FINISH_CHECKING':
+            return{
+                ...state,
+                checking: false
             }
     
         default:
