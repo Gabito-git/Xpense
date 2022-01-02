@@ -23,10 +23,14 @@ const newTransaction = async(req, res) => {
     }
 }
 
-const getTransactions = async(req, res) => {
-    
+const getTransactions = async(req, res) => {    
+    const { user_id } = req.currentUser;
+
     try {
-        const response     = await pool.query("SELECT * FROM transactions ORDER BY date DESC LIMIT 10");
+        const response     = await pool.query(
+            "SELECT * FROM transactions WHERE user_id =$1 ORDER BY date DESC LIMIT 10",
+            [user_id]
+            );
         const transactions = response.rows;
       
         res.status(200).json({           
