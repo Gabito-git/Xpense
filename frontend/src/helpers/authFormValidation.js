@@ -3,7 +3,7 @@ const authFormValidation = ( values ) => {
     const errors = {};
     const regEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
-    if( values.username.trim().length === 0 ){
+    if( values.username?.trim().length === 0 ){
         errors.username = 'Please provide a username';
     }
 
@@ -15,7 +15,7 @@ const authFormValidation = ( values ) => {
         errors.password = 'Please provide a password' 
     }
 
-    if( values.password2.trim() !== values.password.trim()){
+    if( values.password2?.trim() !== values.password.trim()){
         errors.password2 = 'Passwords must match'
     }
 
