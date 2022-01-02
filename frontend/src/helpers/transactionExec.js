@@ -1,16 +1,17 @@
 import { newTransaction, updateTransaction } from "../actions/transactions";
+import fetchHelper from "./fetchHelper";
 
 export const transactionExec = async(values, dispatch, reset ) => {
     const { concept, amount, date, category, transaction_id } = values;
     let url, method, type;    
     
     if( transaction_id ){
-        url    = `http://localhost:4000/api/transactions/${ transaction_id }`
-        method = 'PUT'
+        url    = `transactions/${ transaction_id }`
+        method = 'put'
         type   = values.type
     }else{
-        url    = 'http://localhost:4000/api/transactions';
-        method = 'POST'
+        url    = 'transactions';
+        method = 'post'
         type   = amount > 0 ? 'income' : 'expense'
     }
 
@@ -22,12 +23,10 @@ export const transactionExec = async(values, dispatch, reset ) => {
         type
     }
 
-    const response = await fetch(url, {
+    const response = await fetchHelper({
+        url,
         method,
-        headers:{
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify( transaction )
+        body: transaction
     })
 
     const newTransactionDb = await response.json();
