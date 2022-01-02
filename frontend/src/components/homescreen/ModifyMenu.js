@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 
 import { deleteTransaction, setToModify } from "../../actions/transactions";
 import { TransactionContext } from "../../context/transactionContext";
+import fetchHelper from "../../helpers/fetchHelper";
 
 const ModifyMenu = ({ transactionId }) => {
 
@@ -23,8 +24,9 @@ const ModifyMenu = ({ transactionId }) => {
 
         if( answer.isConfirmed ){
             try {
-                const response = await fetch(`http://localhost:4000/api/transactions/${ transactionId }`, {
-                    method: 'DELETE'
+                const response = await fetchHelper({
+                    url:`transactions/${ transactionId }`,
+                    method: 'delete'
                 })
                 
                 const resp = await response.json();
