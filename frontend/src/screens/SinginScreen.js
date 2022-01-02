@@ -5,6 +5,7 @@ import FormGroup from "../components/authscreen/FormGroup"
 import Navbar from "../components/Navbar"
 import money from '../assets/money.png'
 import useFormControl from '../hooks/useFormControl'
+import authFormValidation from '../helpers/authFormValidation'
 
 const initialValues = {
     email: '',
@@ -15,7 +16,8 @@ const SinginScreen = () => {
 
     const history = useHistory();
     const { values, errors, functions } = useFormControl({
-        initialValues
+        initialValues,
+        validation: authFormValidation
     })
 
     return (
@@ -40,12 +42,14 @@ const SinginScreen = () => {
                         type="email"
                         name="email"
                     />
+                    { errors?.email && <div style={ {color: 'red'} }>{ errors.email }</div> }
                     <FormGroup 
                         className="auth"
                         label="Password"
                         type="password"
                         name="password"
                     />
+                    { errors?.password && <div style={ {color: 'red'} }>{ errors.password }</div> }
                 </AuthForm>
                 <div className="auth__bottom"></div>
                 <div className="auth__money animate__animated animate__rotateIn">
