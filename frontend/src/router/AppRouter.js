@@ -1,7 +1,6 @@
 import { useContext, useEffect } from 'react';
 import {
     Switch,
-    Route,
     Redirect,
     BrowserRouter as Router
 } from 'react-router-dom';

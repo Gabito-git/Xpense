@@ -1,5 +1,4 @@
 import Swal from "sweetalert2";
-import axios from 'axios';
 
 import { setCurrentUser } from "../actions/auth";
 import fetchHelper from "./fetchHelper";

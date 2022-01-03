@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react"
 
-import Button from "../components/Button"
 import Balance from "../components/homescreen/Balance"
 import History from "../components/homescreen/History"
 import TransactionForm from "../components/homescreen/TransactionForm"
