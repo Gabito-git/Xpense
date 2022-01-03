@@ -2,8 +2,9 @@
     align-items: center;
     display: flex;
     border-bottom: 1.7px solid  lighten($color-primary, $amount: 20);
+    font-size: 1.5rem;
     justify-content: space-between;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     position: relative;
 
     &__concept{
@@ -17,7 +18,7 @@
 
     &__right{        
         align-items: center;
-        display: flex;        
+        display: flex;       
     }
 
     &__value{
