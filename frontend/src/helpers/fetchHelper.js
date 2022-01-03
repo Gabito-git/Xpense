@@ -1,7 +1,7 @@
 const fetchHelper = ({ url, method, body={} }) => {
     const urlString = `http://localhost:4000/api/${ url }`;
 
-    if(method === 'get' || method == 'delete'){
+    if(method === 'get' || method === 'delete'){
         return fetch( urlString, {
             method,
             headers:{
